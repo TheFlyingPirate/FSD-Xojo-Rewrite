@@ -11,12 +11,17 @@ Protected Class certificate
 		  self.creationTime = creationTime
 		  self.origin = origin
 		  prevVisit = Nil
+		  Certificates.Add(self)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Shared Function getCert(name as string) As Certificate
-		  
+		  for each c as certificate in Certificates
+		    if c.cid = name then
+		      return c
+		    end
+		  next
 		End Function
 	#tag EndMethod
 
