@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2024r1.1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Project" ID="0">
+ <ProjectSavedInVers>2024.011</ProjectSavedInVers>
+ <IDEVersion>20240101</IDEVersion>
+ <MajorVersion>1</MajorVersion>
+ <MinorVersion>0</MinorVersion>
+ <SubVersion>0</SubVersion>
+ <Release>0</Release>
+ <NonRelease>0</NonRelease>
+ <Region></Region>
+ <ShortVersion></ShortVersion>
+ <LongVersion></LongVersion>
+ <InfoVersion></InfoVersion>
+ <AutoIncVersion>0</AutoIncVersion>
+ <DefaultViewID>0</DefaultViewID>
+ <ProjectType>1</ProjectType>
+ <DefaultLanguage>0</DefaultLanguage>
+ <CurrentLanguage>0</CurrentLanguage>
+ <DefaultEncoding>0</DefaultEncoding>
+ <BuildFlags>16640</BuildFlags>
+ <UseBuildsFolder>1</UseBuildsFolder>
+ <WebApp>0</WebApp>
+ <Icon>
+ </Icon>
+ <MacCreator></MacCreator>
+ <BuildCarbonMachOName>FSD-Fullrewrite</BuildCarbonMachOName>
+ <BundleIdentifier>net.saschamaigattercomputerit.fsdfullrewrite</BundleIdentifier>
+ <WinMDICaption></WinMDICaption>
+ <BuildWinName>FSD-Fullrewrite.exe</BuildWinName>
+ <BuildWinMDI>0</BuildWinMDI>
+ <BuildWinCompanyName>Sascha Maigatter Computer &amp; IT</BuildWinCompanyName>
+ <BuildWinProductName></BuildWinProductName>
+ <BuildWinInternalName></BuildWinInternalName>
+ <BuildWinFileDescription></BuildWinFileDescription>
+ <UseGDIPlus>0</UseGDIPlus>
+ <BuildLinuxX86Name>FSD-Fullrewrite</BuildLinuxX86Name>
+ <DebuggerCommandLine></DebuggerCommandLine>
+ <LinuxArchitecture>1</LinuxArchitecture>
+ <MacArchitecture>1</MacArchitecture>
+ <WindowsArchitecture>1</WindowsArchitecture>
+ <OptimizationLevel>0</OptimizationLevel>
+ <CopyWindowsRedist>0</CopyWindowsRedist>
+ <IncludePDB>0</IncludePDB>
+ <WinUIFramework>0</WinUIFramework>
+ <WindowsVersions>{1f676c76-80e1-4239-95bb-83d0f6d0da78}|{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}</WindowsVersions>
+ <WindowsRunAs>0</WindowsRunAs>
+ <MacMinimumVersion></MacMinimumVersion>
+</block>
+<block type="Module" ID="927817727">
+ <ObjName>App</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Superclass>ConsoleApplication</Superclass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <IsApplicationObject>1</IsApplicationObject>
+ <Compatibility></Compatibility>
+ <HookInstance>
+  <ItemName>Run</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1587382271</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Run(args() as String) As Integer</SourceLine>
+   <SourceLine>fsdServer.Initilize()</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+ </HookInstance>
+ <PropertyVal Name="MenuBar">0</PropertyVal>
+ <ViewBehavior>
+ </ViewBehavior>
+</block>
+<block type="BuildAutomation" ID="464703487">
+ <ObjName>Build Automation</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+</block>
+<block type="BuildStepsList" ID="1023533055">
+ <ObjName>Linux</ObjName>
+ <ObjContainerID>464703487</ObjContainerID>
+</block>
+<block type="BuildProjectStep" ID="1311449087">
+ <ObjName>Build</ObjName>
+ <ObjContainerID>1023533055</ObjContainerID>
+</block>
+<block type="BuildStepsList" ID="280575999">
+ <ObjName>Mac OS X</ObjName>
+ <ObjContainerID>464703487</ObjContainerID>
+</block>
+<block type="BuildProjectStep" ID="429977599">
+ <ObjName>Build</ObjName>
+ <ObjContainerID>280575999</ObjContainerID>
+</block>
+<block type="SignProjectScriptStep" ID="1797834751">
+ <ObjName>Sign</ObjName>
+ <ObjContainerID>280575999</ObjContainerID>
+</block>
+<block type="BuildStepsList" ID="749674495">
+ <ObjName>Windows</ObjName>
+ <ObjContainerID>464703487</ObjContainerID>
+</block>
+<block type="BuildProjectStep" ID="1548845055">
+ <ObjName>Build</ObjName>
+ <ObjContainerID>749674495</ObjContainerID>
+</block>
+<block type="Module" ID="1085827071">
+ <ObjName>fsdServer</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>0</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Initilize</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>116881407</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Initilize()</SourceLine>
+   <SourceLine>certificate.Initilize()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="Module" ID="1999998975">
+ <ObjName>certificate</ObjName>
+ <ObjContainerID>1085827071</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>getCert</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1894373375</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function getCert(name as string) As Certificate</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>name as string</ItemParams>
+  <ItemResult>Certificate</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Initilize</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1087336447</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Initilize()</SourceLine>
+   <SourceLine>certLevels.add("SUSPENDED")</SourceLine>
+   <SourceLine>certLevels.add("OBSPILOT")</SourceLine>
+   <SourceLine>certLevels.add("STUDENT1")</SourceLine>
+   <SourceLine>certLevels.add("STUDENT2")</SourceLine>
+   <SourceLine>certLevels.add("STUDENT3")</SourceLine>
+   <SourceLine>certLevels.add("CONTROLLER1")</SourceLine>
+   <SourceLine>certLevels.add("CONTROLLER2")</SourceLine>
+   <SourceLine>certLevels.add("CONTROLLER3")</SourceLine>
+   <SourceLine>certLevels.add("INSTRUCTOR1")</SourceLine>
+   <SourceLine>certLevels.add("INSTRUCTOR2")</SourceLine>
+   <SourceLine>certLevels.add("INSTRUCTOR3")</SourceLine>
+   <SourceLine>certLevels.add("SUPERVIOSR")</SourceLine>
+   <SourceLine>certLevels.add("ADMINISTRATOR")</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>403552255</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(cid as string, password as string, level as integer, creationTime as DateTime, origin as string)</SourceLine>
+   <SourceLine>self.cid = cid</SourceLine>
+   <SourceLine>self.password = password</SourceLine>
+   <SourceLine>self.level = level</SourceLine>
+   <SourceLine>if self.level &gt; maxLevel then</SourceLine>
+   <SourceLine>self.Level = maxLevel</SourceLine>
+   <SourceLine>end</SourceLine>
+   <SourceLine>self.creationTime = creationTime</SourceLine>
+   <SourceLine>self.origin = origin</SourceLine>
+   <SourceLine>prevVisit = Nil</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>cid as string, password as string, level as integer, creationTime as DateTime, origin as string</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Property>
+  <ItemName>cid</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>723406847</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>cid As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>cid As String</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>password</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>447780863</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>password As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>password As String</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>origin</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>173379583</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>origin As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>origin As String</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>level</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1846730751</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>level As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>level As Integer</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>liveCheck</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>978497535</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>liveCheck As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>liveCheck As Integer</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>prevVisit</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>938018815</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>prevVisit As DateTime</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>prevVisit As DateTime</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>creationTime</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>264531967</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>creationTime As DateTime</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>creationTime As DateTime</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+ </Property>
+ <Property>
+  <ItemName>certLevels()</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>2052376575</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared certLevels() As String</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>d</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>certLevels() As String</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+ </Property>
+ <Property>
+  <ItemName>maxLevel</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>785057791</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared maxLevel As Integer = 12</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>maxLevel As Integer = 12</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+ </Property>
+ <Property>
+  <ItemName>Certificates()</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1745580031</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Certificates() As certificate</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Certificates() As certificate</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+<block type="UIState" ID="0">
+ <StudioWindowState>
+  <EditBounds><Rect left="-1928" top="-8" width="1936" height="1048"/></EditBounds>
+  <WindowMaximized>1</WindowMaximized>
+  <Editors>
+   <EditorCount>1</EditorCount>
+   <Editor>
+    <EditorIndex>0</EditorIndex>
+    <EditorLocation>fsdServer.certificate.maxLevel</EditorLocation>
+    <EditorPath></EditorPath>
+    <EditingPartID>1999998975</EditingPartID>
+    <EditorPath></EditorPath>
+   </Editor>
+   <SelectedTab>0</SelectedTab>
+  </Editors>
+ </StudioWindowState>
+</block>
+</RBProject>
