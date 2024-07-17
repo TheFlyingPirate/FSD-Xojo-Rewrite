@@ -29,6 +29,28 @@ Protected Module fsdServer
 	#tag EndConstant
 
 
+	#tag Structure, Name = cloudlayer, Flags = &h0
+	#tag EndStructure
+
+	#tag Structure, Name = loghis, Flags = &h0
+	#tag EndStructure
+
+	#tag Structure, Name = managevar, Flags = &h0
+	#tag EndStructure
+
+	#tag Structure, Name = mmq, Flags = &h0
+	#tag EndStructure
+
+	#tag Structure, Name = station, Flags = &h0
+	#tag EndStructure
+
+	#tag Structure, Name = templayer, Flags = &h0
+	#tag EndStructure
+
+	#tag Structure, Name = windlayer, Flags = &h0
+	#tag EndStructure
+
+
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Name"

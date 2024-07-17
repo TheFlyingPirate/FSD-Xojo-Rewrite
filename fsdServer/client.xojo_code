@@ -2,7 +2,7 @@
 Protected Class client
 	#tag Method, Flags = &h0
 		Sub Constructor(i as string, where as server, cs as string, t as integer, reqrating as integer, rev as string, real as string, st as integer)
-		  
+		  //ToDo add functionality
 		End Sub
 	#tag EndMethod
 
@@ -33,31 +33,31 @@ Protected Class client
 
 	#tag Method, Flags = &h0
 		Function getrange() As Integer
-		  
+		  //ToDo add functionality
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub handlefp(data() as String)
-		  
+		  //ToDo add functionality
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub setalive()
-		  
+		  //ToDo add functionality
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub updateatc(data() as string)
-		  
+		  //ToDo add functionality
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub updatepilot(data() as string)
-		  
+		  //ToDo add functionality
 		End Sub
 	#tag EndMethod
 
@@ -205,7 +205,159 @@ Protected Class client
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="starttime"
+			Name="altitude"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="callsign"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="cid"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="facilitytype"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="flags"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="frequency"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="groundspeed"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="identflag"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="lat"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="lon"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="pbh"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="UInteger"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="positionok"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="protocol"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="rating"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="realname"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="sector"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="simtype"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="transponder"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="type"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="visualrange"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
