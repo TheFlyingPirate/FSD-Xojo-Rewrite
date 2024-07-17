@@ -18,12 +18,45 @@ Protected Module fsdServer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function getCert(name as string) As Certificate
+		  for each c as certificate in Certificates
+		    if c.cid = name then
+		      return c
+		    end
+		  next
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub Initilize()
-		  certificate.Initilize()
-		  
+		  certLevels.add("SUSPENDED")
+		  certLevels.add("OBSPILOT")
+		  certLevels.add("STUDENT1")
+		  certLevels.add("STUDENT2")
+		  certLevels.add("STUDENT3")
+		  certLevels.add("CONTROLLER1")
+		  certLevels.add("CONTROLLER2")
+		  certLevels.add("CONTROLLER3")
+		  certLevels.add("INSTRUCTOR1")
+		  certLevels.add("INSTRUCTOR2")
+		  certLevels.add("INSTRUCTOR3")
+		  certLevels.add("SUPERVIOSR")
+		  certLevels.add("ADMINISTRATOR")
 		End Sub
 	#tag EndMethod
 
+
+	#tag Property, Flags = &h0
+		Certificates() As certificate
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		#tag Note
+			
+			d
+		#tag EndNote
+		certLevels() As String
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		clcmdnames() As String
@@ -50,7 +83,19 @@ Protected Module fsdServer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		maxLevel As Integer = 12
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		myserver As Server
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		serverinterface As servinterface
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		servers() As Server
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
