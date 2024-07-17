@@ -34,6 +34,10 @@ Protected Module fsdServer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		manager As manage
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		serverinterface As servinterface
 	#tag EndProperty
 
@@ -181,32 +185,18 @@ Protected Module fsdServer
 	#tag EndConstant
 
 
-	#tag Structure, Name = allowstruct, Flags = &h0
-		next as allowstruct
-		as string
-	#tag EndStructure
-
 	#tag Structure, Name = cloudlayer, Flags = &h0
 	#tag EndStructure
 
-	#tag Structure, Name = guardstruct, Flags = &h0
-		next as guardstruct
-		  prev as guardstruct
-		  prevtry as datetime
-		  host as string
-		port as integer
-	#tag EndStructure
-
 	#tag Structure, Name = loghis, Flags = &h0
-	#tag EndStructure
-
-	#tag Structure, Name = managevar, Flags = &h0
 	#tag EndStructure
 
 	#tag Structure, Name = mmq, Flags = &h0
 	#tag EndStructure
 
 	#tag Structure, Name = station, Flags = &h0
+		name as string * 10
+		location as integer
 	#tag EndStructure
 
 	#tag Structure, Name = templayer, Flags = &h0
