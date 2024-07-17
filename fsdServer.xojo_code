@@ -54,6 +54,15 @@ Protected Module fsdServer
 	#tag Constant, Name = CONNECTDELAY, Type = Double, Dynamic = False, Default = \"20", Scope = Public
 	#tag EndConstant
 
+	#tag Constant, Name = FEED_BOTH, Type = Double, Dynamic = False, Default = \"3", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = FEED_IN, Type = Double, Dynamic = False, Default = \"1", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = FEED_OUT, Type = Double, Dynamic = False, Default = \"2", Scope = Public
+	#tag EndConstant
+
 	#tag Constant, Name = GUARDRETRY, Type = Double, Dynamic = False, Default = \"120", Scope = Public
 	#tag EndConstant
 
@@ -172,7 +181,20 @@ Protected Module fsdServer
 	#tag EndConstant
 
 
+	#tag Structure, Name = allowstruct, Flags = &h0
+		next as allowstruct
+		as string
+	#tag EndStructure
+
 	#tag Structure, Name = cloudlayer, Flags = &h0
+	#tag EndStructure
+
+	#tag Structure, Name = guardstruct, Flags = &h0
+		next as guardstruct
+		  prev as guardstruct
+		  prevtry as datetime
+		  host as string
+		port as integer
 	#tag EndStructure
 
 	#tag Structure, Name = loghis, Flags = &h0
@@ -192,6 +214,19 @@ Protected Module fsdServer
 
 	#tag Structure, Name = windlayer, Flags = &h0
 	#tag EndStructure
+
+
+	#tag Enum, Name = killreason, Type = Integer, Flags = &h0
+		KILL_NONE
+		  KILL_COMMAND
+		  KILL_FLOOD
+		  KILL_INITTIMEOUT
+		  KILL_DATATIMEOUT
+		  KILL_CLOSED
+		  KILL_WRITEERR
+		  KILL_KILL
+		KILL_PROTOCOL
+	#tag EndEnum
 
 
 	#tag ViewBehavior
