@@ -26,11 +26,23 @@ Protected Module fsdServer
 
 
 	#tag Property, Flags = &h0
+		clcmdnames() As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		clientinterface As clinterface
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		cmdnames() As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		configman As configmanager
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		errstr As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -213,16 +225,87 @@ Protected Module fsdServer
 	#tag EndStructure
 
 
-	#tag Enum, Name = killreason, Type = Integer, Flags = &h0
-		KILL_NONE
-		  KILL_COMMAND
-		  KILL_FLOOD
-		  KILL_INITTIMEOUT
-		  KILL_DATATIMEOUT
-		  KILL_CLOSED
-		  KILL_WRITEERR
-		  KILL_KILL
-		KILL_PROTOCOL
+	#tag Enum, Name = CL, Type = Integer, Flags = &h0
+		ADDATC
+		  RMATC
+		  ADDPILOT
+		  RMPILOT
+		  REQHANDOFF
+		  MESSAGE
+		  REQWEATHER
+		  PILOTPOS
+		  ATCPOS
+		  PING
+		  PONG
+		  ACHANDOFF
+		  PLAN
+		  SB
+		  PC
+		  WEATHER
+		  CLOUDDATA
+		  WINDDATA
+		  TEMPDATA
+		  REQCOM
+		  REPCOM
+		  REQACARS
+		  REPACARS
+		  ERROR
+		  CQ
+		  CR
+		  KILL
+		WDELTA
+	#tag EndEnum
+
+	#tag Enum, Name = CMD, Type = Integer, Flags = &h0
+		NOTIFY
+		  REQMETAR
+		  PING
+		  PONG
+		  SYNC
+		  LINKDOWN
+		  NOWX
+		  ADDCLIENT
+		  RMCLIENT
+		  PLAN
+		  PD
+		  AD
+		  CERT
+		  MULTIC
+		  WEATHER
+		  METAR
+		  ADDWPROF
+		  DELWPROF
+		  KILL
+		RESET
+	#tag EndEnum
+
+	#tag Enum, Name = ERR, Type = Integer, Flags = &h0
+		OK
+		  CSINUSE
+		  CSINVALID
+		  REGISTERED
+		  SYNTAX
+		  SRCINVALID
+		  CIDINVALID
+		  NOSUCHCS
+		  NOFP
+		  NOWEATHER
+		  REVISION
+		  LEVEL
+		  SERVFULL
+		CSSUSPEND
+	#tag EndEnum
+
+	#tag Enum, Name = KILL, Type = Integer, Flags = &h0
+		NONE
+		  COMMAND
+		  FLOOD
+		  INITTIMEOUT
+		  DATATIMEOUT
+		  CLOSED
+		  WRITEERR
+		  KILL
+		PROTOCOL
 	#tag EndEnum
 
 	#tag Enum, Name = SOURCE, Type = Integer, Flags = &h0
