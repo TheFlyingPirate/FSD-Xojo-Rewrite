@@ -63,7 +63,7 @@ Protected Class client
 
 
 	#tag Property, Flags = &h0
-		alive As DateTime
+		alive As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -147,7 +147,7 @@ Protected Class client
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		starttime As DateTime
+		starttime As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0

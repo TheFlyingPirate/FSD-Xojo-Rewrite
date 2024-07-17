@@ -1,13 +1,13 @@
 #tag Class
 Protected Class certificate
 	#tag Method, Flags = &h0
-		Sub configure(pwd as string, l as integer, c as DateTime, o as string)
+		Sub configure(pwd as string, l as integer, c as Integer, o as string)
 		  //ToDo add functionality
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor(cid as string, password as string, level as integer, creationTime as DateTime, origin as string)
+		Sub Constructor(cid as string, password as string, level as integer, creationTime as Integer, origin as string)
 		  self.cid = cid
 		  self.password = password
 		  self.level = level
@@ -16,7 +16,7 @@ Protected Class certificate
 		  end
 		  self.creationTime = creationTime
 		  self.origin = origin
-		  prevVisit = Nil
+		  prevVisit = -1
 		  Certificates.Add(self)
 		End Sub
 	#tag EndMethod
@@ -67,7 +67,7 @@ Protected Class certificate
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		creationTime As DateTime
+		creationTime As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -91,7 +91,7 @@ Protected Class certificate
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		prevVisit As DateTime
+		prevVisit As Integer
 	#tag EndProperty
 
 

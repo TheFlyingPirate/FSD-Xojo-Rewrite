@@ -68,7 +68,7 @@ Protected Class fsd
 
 
 	#tag Property, Flags = &h0
-		cerfilestat As datetime
+		cerfilestat As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -88,19 +88,19 @@ Protected Class fsd
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		prevcertcheck As datetime
+		prevcertcheck As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		prevlagcheck As datetime
+		prevlagcheck As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		prevnotify As datetime
+		prevnotify As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		prevwhazzup As DateTime
+		prevwhazzup As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -112,7 +112,7 @@ Protected Class fsd
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		timer As datetime
+		timer As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0

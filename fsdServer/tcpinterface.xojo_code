@@ -115,7 +115,7 @@ Inherits process
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		prevchecks As DateTime
+		prevchecks As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0

@@ -49,12 +49,6 @@ Protected Class manage
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub setvar(num as integer, val as datetime)
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub setvar(num as integer, val as integer)
 		  
 		End Sub

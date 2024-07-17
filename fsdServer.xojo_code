@@ -175,6 +175,9 @@ Protected Module fsdServer
 	#tag Constant, Name = USERTIMEOUT, Type = Double, Dynamic = False, Default = \"500", Scope = Public
 	#tag EndConstant
 
+	#tag Constant, Name = VAR_AMOUNT, Type = Double, Dynamic = False, Default = \"10", Scope = Public
+	#tag EndConstant
+
 	#tag Constant, Name = VERSION, Type = String, Dynamic = False, Default = \"V3.000 d9 Xojo", Scope = Public
 	#tag EndConstant
 
@@ -192,6 +195,10 @@ Protected Module fsdServer
 	#tag EndStructure
 
 	#tag Structure, Name = mmq, Flags = &h0
+		Destination as string *20
+		  metarid as string * 10
+		  fd as integer
+		parsed as integer
 	#tag EndStructure
 
 	#tag Structure, Name = station, Flags = &h0
@@ -216,6 +223,12 @@ Protected Module fsdServer
 		  KILL_WRITEERR
 		  KILL_KILL
 		KILL_PROTOCOL
+	#tag EndEnum
+
+	#tag Enum, Name = SOURCE, Type = Integer, Flags = &h0
+		SOURCE_NETWORK
+		  SOURCE_FILE
+		SOURCE_DOWNLOAD
 	#tag EndEnum
 
 

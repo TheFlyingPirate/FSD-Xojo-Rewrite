@@ -99,7 +99,7 @@ Inherits tcpinterface
 
 
 	#tag Property, Flags = &h21
-		Private prevwinddelta As DateTime
+		Private prevwinddelta As Integer
 	#tag EndProperty
 
 

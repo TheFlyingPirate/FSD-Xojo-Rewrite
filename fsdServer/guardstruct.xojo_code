@@ -9,7 +9,7 @@ Protected Class guardstruct
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		prevtry As datetime
+		prevtry As Integer
 	#tag EndProperty
 
 

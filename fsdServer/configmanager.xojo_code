@@ -39,7 +39,7 @@ Inherits process
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		lastmodify As DateTime
+		lastmodify As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -47,7 +47,7 @@ Inherits process
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		prevcheck As DateTime
+		prevcheck As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
