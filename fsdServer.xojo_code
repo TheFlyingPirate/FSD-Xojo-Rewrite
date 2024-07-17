@@ -1,7 +1,7 @@
 #tag Module
 Protected Module fsdServer
 	#tag Method, Flags = &h0
-		Sub dist(lat1 as double, lon1 as double, lat2 as double, lon2 as double)
+		Function dist(lat1 as double, lon1 as double, lat2 as double, lon2 as double) As double
 		  Dim dist, dlon as double
 		  dlon = lon2-lon1
 		  lat1 = lat1 * Pi/180.0
@@ -11,10 +11,10 @@ Protected Module fsdServer
 		  if dist >1.0 then
 		    dist=1.0
 		  end
-		  dist =ACos(dist)*60&180/pi
+		  dist = ACos(dist)*60*180/pi
 		  return dist
 		  
-		End Sub
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0

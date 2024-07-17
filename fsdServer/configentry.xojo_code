@@ -31,12 +31,12 @@ Protected Class configentry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getpart(num as integer) As string
+		Function getpart(num as integer) As String
 		  If parts.Ubound = -1 Then
 		    fillparts()
 		  End If
 		  If num >= nparts Then
-		    Return Nil
+		    Return ""
 		  End If
 		  Return parts(num)
 		End Function
@@ -44,7 +44,7 @@ Protected Class configentry
 
 	#tag Method, Flags = &h0
 		Function inlist(entry as string) As integer
-		  
+		  //ToDo Add Functionality
 		End Function
 	#tag EndMethod
 

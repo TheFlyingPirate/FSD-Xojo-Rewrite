@@ -2,7 +2,7 @@
 Protected Class clinterface
 Inherits tcpinterface
 	#tag Method, Flags = &h0
-		Function calcrange(from as client, to as client, type as integer, range as integer) As Integer
+		Function calcrange(from as client, toc as client, type as integer, range as integer) As Integer
 		  //ToDo add functionality
 		End Function
 	#tag EndMethod
@@ -50,13 +50,13 @@ Inherits tcpinterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub sendgeneric(to as string, dest as client, ex as absuser, source as client, from as string, s as string, cmd as integer)
+		Sub sendgeneric(toc as string, dest as client, ex as absuser, source as client, from as string, s as string, cmd as integer)
 		  //ToDo add functionality
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub sendmetar(who as client, d as data)
+		Sub sendmetar(who as client, data as string)
 		  //ToDo add functionality
 		End Sub
 	#tag EndMethod
@@ -68,7 +68,7 @@ Inherits tcpinterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub sendpacket(dest as client, source as clientexclude as absuser, broad as integer, range as integer, cmd as integer, data as string)
+		Sub sendpacket(dest as client, source as client, exclude as absuser, broad as integer, range as integer, cmd as integer, data as string)
 		  //ToDo add functionality
 		End Sub
 	#tag EndMethod
