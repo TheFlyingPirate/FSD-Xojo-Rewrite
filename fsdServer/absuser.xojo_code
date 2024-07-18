@@ -185,20 +185,21 @@ Protected Class absuser
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Protected Sub SetMasks(rmask As MemoryBlock, wmask As MemoryBlock)
-		  // Implementation here
+		Protected Sub SetMasks()
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Protected Sub SetPrompt(prompt As String)
-		  // Implementation here
+		Protected Sub SetPrompt(s As String)
+		  prompt = StrUpr(s)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub Unblock()
-		  // Implementation here
+		  blocked = 0
+		  PrintPrompt()
 		End Sub
 	#tag EndMethod
 
