@@ -103,6 +103,12 @@ Protected Module fsdServer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function getwprofile(name as String) As wprofile
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub Initilize()
 		  certLevels.add("SUSPENDED")
 		  certLevels.add("OBSPILOT")
@@ -475,6 +481,10 @@ Protected Module fsdServer
 
 
 	#tag Structure, Name = cloudlayer, Flags = &h0
+		ceiling as integer
+		  floor as integer
+		  icing as integer
+		turbulence as integer
 	#tag EndStructure
 
 	#tag Structure, Name = loghis, Flags = &h0
@@ -495,9 +505,17 @@ Protected Module fsdServer
 	#tag EndStructure
 
 	#tag Structure, Name = templayer, Flags = &h0
+		ceiling as integer
+		temp as integer
 	#tag EndStructure
 
 	#tag Structure, Name = windlayer, Flags = &h0
+		ceiling as integer
+		  floor as integer
+		  direction as integer
+		  speed as integer
+		  gusting as integer
+		turbulence as integer
 	#tag EndStructure
 
 

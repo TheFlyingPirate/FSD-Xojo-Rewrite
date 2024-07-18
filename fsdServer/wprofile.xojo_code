@@ -1,5 +1,178 @@
 #tag Class
 Protected Class wprofile
+	#tag Method, Flags = &h0
+		Sub Activate()
+		  // Implementation here
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Constructor(name As String, creation As DateTime, origin As String)
+		  // Implementation here
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Fix(lat As Double, lon As Double)
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub FixVisibility()
+		  // Implementation here
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub GenRawCode()
+		  // Implementation here
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function GetSeason(lat As Double) As Integer
+		  // Implementation here
+		  Return 0
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub LoadArray(array() As String, count As Integer)
+		  // Implementation here
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function ParseAlt(array() As String, count As Integer) As Integer
+		  // Implementation here
+		  Return 0
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ParseMetar(array() As String, count As Integer)
+		  // Implementation here
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function ParseRvr(array() As String, count As Integer) As Integer
+		  // Implementation here
+		  Return 0
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function ParseSky(array() As String, count As Integer) As Integer
+		  // Implementation here
+		  Return 0
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function ParseTemp(array() As String, count As Integer) As Integer
+		  // Implementation here
+		  Return 0
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function ParseVis(array() As String, count As Integer) As Integer
+		  // Implementation here
+		  Return 0
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function ParseWind(array() As String, count As Integer) As Integer
+		  // Implementation here
+		  Return 0
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function ParseWx(array() As String, count As Integer) As Integer
+		  // Implementation here
+		  Return 0
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Print(data As String)
+		  // Implementation here
+		  
+		End Sub
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h0
+		Active As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Barometer As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Clouds() As cloudlayer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Creation As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		DewPoint As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Name As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Origin As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		RawCode As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Temps() As templayer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		TStorm As Cloudlayer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Version As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Visibility As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Winds() As windlayer
+	#tag EndProperty
+
+
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Name"
