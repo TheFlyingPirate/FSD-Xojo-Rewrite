@@ -66,7 +66,7 @@ Protected Class absuser
 	#tag Method, Flags = &h1
 		Protected Sub Input()
 		  // Implementation here
-		  Dim buf as string = Socket.ReadAll()
+		  inbuf = Socket.ReadAll()
 		End Sub
 	#tag EndMethod
 
@@ -112,7 +112,8 @@ Protected Class absuser
 
 	#tag Method, Flags = &h1
 		Protected Sub Output()
-		  // Implementation here
+		  Socket.Write(outBuf)
+		  Socket.Flush()
 		End Sub
 	#tag EndMethod
 
