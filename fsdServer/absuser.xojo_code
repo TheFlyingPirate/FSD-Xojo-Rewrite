@@ -78,9 +78,35 @@ Protected Class absuser
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function NextLine(line As String, buffer As String) As Integer
-		  // Implementation here
-		  Return 0
+		Function NextLine(source As String, dest As String) As Integer
+		  Const MAXLINELENGTH As Integer = 1024 ' Define this according to your needs
+		  Dim len As Integer = source.IndexOf(Chr(13)) ' Find the first occurrence of '\r'
+		  If len = -1 Then 
+		    len = source.IndexOf(Chr(10))
+		  end 
+		  ' If '\r' not found, find '\n'
+		  If len = -1 Then 
+		    Return -1 ' No newline found
+		    
+		  end
+		  ' Extract the line
+		  dest = source.Left(len)
+		  
+		  ' Remove the line from the source
+		  Dim where As Integer = len
+		  While where < source.Length And (source.Mid(where, 1) = Chr(10) Or source.Mid(where, 1) = Chr(13))
+		    where = where + 1
+		  Wend
+		  
+		  source = source.Mid(where)
+		  
+		  ' Check if the line length exceeds MAXLINELENGTH
+		  If dest.Length >= MAXLINELENGTH Then
+		    dest = ""
+		    Return -1
+		  End If
+		  
+		  Return where
 		End Function
 	#tag EndMethod
 
