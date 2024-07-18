@@ -125,7 +125,7 @@ Protected Class absuser
 
 	#tag Method, Flags = &h0
 		Sub PrintPrompt()
-		  If prompt="" or killFlag or blocked then
+		  If prompt="" or killFlag > 0 or blocked > 0 then
 		    return
 		  end
 		  UPrintf("%s",prompt)
@@ -135,6 +135,32 @@ Protected Class absuser
 	#tag Method, Flags = &h1
 		Protected Function Run() As Integer
 		  // Implementation here
+		  Dim buf as string
+		  Dim count as integer = 0
+		  Dim stat as integer
+		  Dim ok as integer = 0 
+		  if blocked <> 0 then
+		    return 0
+		  end
+		  stat=NextLine(inBuf,buf)
+		  while stat<>-1 and count + 1<60
+		    count = count + 1
+		    If baseParent.floodlimit<>-1 and feed > baseParent.floodlimit then
+		      self.kill(CType(fsdServer.KILL.FLOOD,Int32))
+		      exit while
+		    end
+		    Parse(buf)
+		    ok = 1
+		    if blocked>0 then
+		      exit while
+		    end
+		    
+		    
+		    stat=NextLine(inBuf,buf)
+		  wend
+		  
+		  
+		  
 		  Return 0
 		End Function
 	#tag EndMethod
