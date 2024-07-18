@@ -125,7 +125,10 @@ Protected Class absuser
 
 	#tag Method, Flags = &h0
 		Sub PrintPrompt()
-		  // Implementation here
+		  If prompt="" or killFlag or blocked then
+		    return
+		  end
+		  UPrintf("%s",prompt)
 		End Sub
 	#tag EndMethod
 
