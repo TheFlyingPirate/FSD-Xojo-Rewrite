@@ -1,5 +1,194 @@
 #tag Class
 Protected Class absuser
+	#tag Method, Flags = &h0
+		Sub Block()
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub CalcFeed()
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Constructor(fd As Integer, baseParent As TcpInterface, peer As String, port As Integer, g As Integer)
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub Input()
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Kill(code As Integer)
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function NextLine(line As String, buffer As String) As Integer
+		  // Implementation here
+		  Return 0
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub Output()
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub Parse(s As String)
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub PrintPrompt()
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Function Run() As Integer
+		  // Implementation here
+		  Return 0
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function Send(data As String) As Integer
+		  // Implementation here
+		  Return 0
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub SendPing()
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub SetActive()
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub SetMasks(rmask As MemoryBlock, wmask As MemoryBlock)
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub SetPrompt(prompt As String)
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Unblock()
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub UPrintf(format As String, ParamArray args() As Variant)
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub USLPrintf(format As String, code As Integer, ParamArray args() As Variant)
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h0
+		baseParent As tcpinterface
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		blocked As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		fd As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		feed As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		feedCount As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		guardFlag As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		inBuf As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		inSize As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		killFlag As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		lastActive As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		lastPing As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		outBuf As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		outBufSoftLimit As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		outSize As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		peer As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		port As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		prevFeedCheck As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		prompt As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		timeout As Integer
+	#tag EndProperty
+
+
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Name"
