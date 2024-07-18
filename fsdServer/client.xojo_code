@@ -3,6 +3,31 @@ Protected Class client
 	#tag Method, Flags = &h0
 		Sub Constructor(i as string, where as server, cs as string, t as integer, reqrating as integer, rev as string, real as string, st as integer)
 		  //ToDo add functionality
+		  location = where
+		  cid = StrUpr(i)
+		  type = t
+		  callsign = StrUpr(cs)
+		  protocol = StrUpr(rev)
+		  sector = ""
+		  identflag = ""
+		  facilitytype = 0
+		  rating = reqrating
+		  visualrange = 40
+		  plan = nil
+		  positionok = 0
+		  altitude = 0
+		  simtype = st
+		  realname = StrUpr(real)
+		  starttime = MTime()
+		  alive = starttime
+		  frequency = 0
+		  transponder = 0
+		  groundspeed=0
+		  lat = 0
+		  lon = 0 
+		  
+		  
+		  clients.Add(self)
 		End Sub
 	#tag EndMethod
 
@@ -20,44 +45,89 @@ Protected Class client
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Shared Function getclient(ident as string) As client
-		  for each cl as client in clients
-		    if cl.callsign = ident then
-		      return cl
-		    end
-		  next
-		  return nil
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function getrange() As Integer
-		  //ToDo add functionality
+		  if type=1 then //if client is pilot
+		    if altitude<0 then
+		      altitude = 0
+		      Dim rv as double
+		      Dim dalt as double = altitude
+		      rv = (10+1.414*sqrt(altitude))
+		      return Floor(rv)
+		    end
+		  end
+		  Select case facilitytype
+		  Case 0
+		    return 40
+		  Case 1
+		    return 1500
+		  Case 2
+		    return 5
+		  Case 3
+		    return 5
+		  Case 4
+		    return 30
+		  Case 5
+		    return 100
+		  case 6
+		    return 400
+		  Case 6
+		    return 1500
+		  Else
+		    return 40
+		    
+		  End Select
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub handlefp(data() as String)
-		  //ToDo add functionality
+		  dim revision as integer
+		  if plan<> nil then
+		    revision = plan.revision + 1
+		  else
+		    revision = 0
+		  end
+		  plan = new flightplan(callsign,data(0),data(1),data(2).ToInteger, data(3), data(4).ToInteger, data(5).ToInteger,data(6),data(7),data(8).ToInteger,data(9).ToInteger,data(10).ToInteger,data(11).ToInteger,data(12),data(13),data(14))
+		  plan.revision = revision
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub setalive()
-		  //ToDo add functionality
+		  alive=MTime()
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub updateatc(data() as string)
-		  //ToDo add functionality
+		  Dim newfreq as integer = data(0).ToInteger
+		  frequency = newfreq
+		  facilitytype = data(1).ToInteger
+		  visualrange = data(2).ToInteger
+		  lat = data(4).ToDouble
+		  lon = data(5).ToDouble
+		  altitude = data(6).ToDouble
+		  setalive()
+		  positionok = 1
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub updatepilot(data() as string)
-		  //ToDo add functionality
+		  Dim a,b,c,x,y,z as UInteger
+		  transponder = data(2).ToInteger
+		  identflag=StrUpr(data(0))
+		  lat=data(4).ToDouble
+		  lon=data(5).ToDouble
+		  altitude = data(6).ToInteger
+		  groundspeed = data(7).ToInteger
+		  pbh = data(8).ToInteger
+		  x = Bitwise.ShiftRight(Bitwise.BitAnd(pbh, &hFF800000), 22)
+		  y = Bitwise.ShiftRight(Bitwise.BitAnd(pbh, &h003FF000), 12)
+		  z = Bitwise.ShiftRight(Bitwise.BitAnd(pbh, &h00000FFC), 2)
+		  flags = data(9).ToInteger
+		  setalive
+		  positionok = 1
 		End Sub
 	#tag EndMethod
 
@@ -78,20 +148,12 @@ Protected Class client
 		cid As String
 	#tag EndProperty
 
-	#tag Property, Flags = &h21
-		Private Shared clients() As client
-	#tag EndProperty
-
 	#tag Property, Flags = &h0
 		facilitytype As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		flags As Integer
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		flightplan As flightplan
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -120,6 +182,10 @@ Protected Class client
 
 	#tag Property, Flags = &h0
 		pbh As UInteger
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		plan As flightplan
 	#tag EndProperty
 
 	#tag Property, Flags = &h0

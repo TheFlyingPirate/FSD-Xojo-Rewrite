@@ -1,7 +1,7 @@
 #tag Class
 Protected Class flightplan
 	#tag Method, Flags = &h0
-		Sub Constructor(cs as string, type as string, aircraft as string, tascruise as integer, depairport as string, deptime as Integer, actdeptime as integer, alt as string, hrsenroute as integer, minenroute as integer, hrsfuel as integer, minfuel as integer, altairport as string, remarks as string, route as string)
+		Sub Constructor(cs as string, type as string, aircraft as string, tascruise as integer, depairport as string, deptime as Integer, actdeptime as integer, alt as string, destairport as string, hrsenroute as integer, minenroute as integer, hrsfuel as integer, minfuel as integer, altairport as string, remarks as string, route as string)
 		  self.callsign = cs
 		  self.type = type
 		  self.tascruise = tascruise

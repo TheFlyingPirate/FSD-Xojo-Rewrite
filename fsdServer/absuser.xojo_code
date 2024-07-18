@@ -119,7 +119,9 @@ Protected Class absuser
 
 	#tag Method, Flags = &h1
 		Protected Sub Parse(s As String)
-		  // Implementation here
+		  // Implementation here _
+		  System.DebugLog("absuser.parse Not yet implemented")
+		  
 		End Sub
 	#tag EndMethod
 
@@ -167,12 +169,14 @@ Protected Class absuser
 
 	#tag Method, Flags = &h0
 		Function Send(data As String) As Integer
-		  
+		  System.DebugLog("absuser.send Not yet implemented")
+		  return -1
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub SendPing()
+		  System.DebugLog("absuser.sendping Not yet implemented")
 		  
 		End Sub
 	#tag EndMethod
@@ -186,6 +190,7 @@ Protected Class absuser
 
 	#tag Method, Flags = &h1
 		Protected Sub SetMasks()
+		  System.DebugLog("absuser.setmasks Not yet implemented")
 		  
 		End Sub
 	#tag EndMethod
@@ -204,14 +209,23 @@ Protected Class absuser
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub UPrintf(format As String, ParamArray args() As Variant)
-		  // Implementation here
+		Sub UPrintf(s As String, ParamArray args() As Variant)
+		  if killFlag > 0 then
+		    return
+		  end
+		  //Todo
+		  System.DebugLog("absuser.uprintf Not yet implemented")
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub USLPrintf(format As String, code As Integer, ParamArray args() As Variant)
-		  // Implementation here
+		  if killflag > 0 then
+		    return
+		  end
+		  System.DebugLog("absuser.uslprintf Not yet implemented")
+		  
 		End Sub
 	#tag EndMethod
 

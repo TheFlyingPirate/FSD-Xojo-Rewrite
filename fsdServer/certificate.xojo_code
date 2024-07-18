@@ -2,7 +2,10 @@
 Protected Class certificate
 	#tag Method, Flags = &h0
 		Sub configure(pwd as string, l as integer, c as Integer, o as string)
-		  //ToDo add functionality
+		  level=l
+		  password=StrUpr(pwd)
+		  origin=StrUpr(o)
+		  creationTime=c
 		End Sub
 	#tag EndMethod
 

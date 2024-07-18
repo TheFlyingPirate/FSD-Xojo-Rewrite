@@ -2,6 +2,7 @@
 Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Sub AddFile(ParamArray args() As Variant)
+		  System.DebugLog("AddFile Not yet implemented")
 		  // Implementation here
 		End Sub
 	#tag EndMethod
@@ -9,6 +10,8 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Function BreakArgs(args As String, parts() As String, maxParts As Integer) As Integer
 		  // Implementation here
+		  System.DebugLog("BreakArgs Not yet implemented")
+		  
 		  Return 0
 		End Function
 	#tag EndMethod
@@ -16,6 +19,8 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Function BreakPacket(packet As String, parts() As String, maxParts As Integer) As Integer
 		  // Implementation here
+		  System.DebugLog("BreakPacket Not yet implemented")
+		  
 		  Return 0
 		End Function
 	#tag EndMethod
@@ -23,6 +28,8 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Function CatArgs(args() As String, count As Integer, separator As String) As String
 		  // Implementation here
+		  System.DebugLog("CatArgs Not yet implemented")
+		  
 		  Return ""
 		End Function
 	#tag EndMethod
@@ -30,6 +37,8 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Function CatCommand(commands() As String, count As Integer, separator As String) As String
 		  // Implementation here
+		  System.DebugLog("CatCommand Not yet implemented")
+		  
 		  Return ""
 		End Function
 	#tag EndMethod
@@ -37,6 +46,8 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Function ConfigGets(s As String, size As Integer) As String
 		  // Implementation here
+		  System.DebugLog("ConfigGets Not yet implemented")
+		  
 		  Return ""
 		End Function
 	#tag EndMethod
@@ -44,6 +55,8 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Sub DBLog(msg As String, level As Integer)
 		  // Implementation here
+		  System.DebugLog("DBLog Not yet implemented")
+		  
 		End Sub
 	#tag EndMethod
 
@@ -67,6 +80,8 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Sub DoLog(level As Integer, ParamArray args() As Variant)
 		  // Implementation here
+		  System.DebugLog("DoLog Not yet implemented")
+		  
 		End Sub
 	#tag EndMethod
 
@@ -74,6 +89,7 @@ Protected Module fsdServer
 		Sub FindHostname(ip As UInt32, hostname As String)
 		  // Implementation here
 		  
+		  System.DebugLog("FindHostname Not yet implemented")
 		  
 		End Sub
 	#tag EndMethod
@@ -81,12 +97,15 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Function FindItem(what As String, buf As String) As Integer
 		  // Implementation here
+		  System.DebugLog("FindItem Not yet implemented")
+		  
 		  Return 0
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function findsection(section as String) As integer
+		  System.DebugLog("FindSection Not yet implemented")
 		  
 		End Function
 	#tag EndMethod
@@ -103,7 +122,20 @@ Protected Module fsdServer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function getClient(ident as string) As client
+		  for each cl as client in clients
+		    if cl.callsign = ident then
+		      return cl
+		    end
+		  next
+		  return nil
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function getwprofile(name as String) As wprofile
+		  System.DebugLog("getwprofile Not yet implemented")
 		  
 		End Function
 	#tag EndMethod
@@ -172,6 +204,8 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Function MConnect(sock As Integer, addr As MemoryBlock, addrlen As Integer, timeout As Integer) As Integer
 		  // Implementation here
+		  System.DebugLog("mconnect Not yet implemented")
+		  
 		  Return 0
 		End Function
 	#tag EndMethod
@@ -179,6 +213,8 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Function MGMTTime() As Integer
 		  // Implementation here
+		  System.DebugLog("mgmttime Not yet implemented")
+		  
 		  Return -1
 		End Function
 	#tag EndMethod
@@ -186,6 +222,8 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Function MRand() As Integer
 		  // Implementation here
+		  System.DebugLog("mrand Not yet implemented")
+		  
 		  Return 0
 		End Function
 	#tag EndMethod
@@ -193,6 +231,8 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Function MRound(value As Double) As Integer
 		  // Implementation here
+		  System.DebugLog("mround Not yet implemented")
+		  
 		  Return 0
 		End Function
 	#tag EndMethod
@@ -200,6 +240,8 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Function MTime() As Integer
 		  // Implementation here
+		  System.DebugLog("mtime Not yet implemented")
+		  
 		  Return -1
 		End Function
 	#tag EndMethod
@@ -207,12 +249,15 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Function PrintLoc(lat As Double, lon As Double, loc As String) As String
 		  // Implementation here
+		  System.DebugLog("printloc Not yet implemented")
+		  
 		  Return ""
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub setconfigfile(name as string)
+		  System.DebugLog("setconfigfile Not yet implemented")
 		  
 		End Sub
 	#tag EndMethod
@@ -220,12 +265,16 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Sub SnapPacket(packet As String, snap As String, size As Integer)
 		  // Implementation here
+		  System.DebugLog("snappacket Not yet implemented")
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function SprintDate(now As Integer, buf As String) As String
 		  // Implementation here
+		  System.DebugLog("sprintdate Not yet implemented")
+		  
 		  Return ""
 		End Function
 	#tag EndMethod
@@ -233,6 +282,8 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Function SprintGMT(now As Integer, buf As String) As String
 		  // Implementation here
+		  System.DebugLog("sprintgmt Not yet implemented")
+		  
 		  Return ""
 		End Function
 	#tag EndMethod
@@ -240,6 +291,8 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Function SprintGMTDate(now As Integer, buf As String) As String
 		  // Implementation here
+		  System.DebugLog("sprintgmtdate Not yet implemented")
+		  
 		  Return ""
 		End Function
 	#tag EndMethod
@@ -247,6 +300,8 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Function SprintTime(now As Integer, buf As String) As String
 		  // Implementation here
+		  System.DebugLog("sprinttime Not yet implemented")
+		  
 		  Return ""
 		End Function
 	#tag EndMethod
@@ -254,12 +309,16 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Sub StartTimer()
 		  // Implementation here
+		  System.DebugLog("starttimer Not yet implemented")
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function StrUpr(s As String) As String
 		  // Implementation here
+		  System.DebugLog("strupr Not yet implemented")
+		  
 		  Return ""
 		End Function
 	#tag EndMethod
@@ -283,6 +342,10 @@ Protected Module fsdServer
 
 	#tag Property, Flags = &h0
 		clientinterface As clinterface
+	#tag EndProperty
+
+	#tag Property, Flags = &h1
+		Protected clients() As client
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
