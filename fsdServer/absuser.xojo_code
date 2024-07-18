@@ -66,12 +66,14 @@ Protected Class absuser
 	#tag Method, Flags = &h1
 		Protected Sub Input()
 		  // Implementation here
+		  Dim buf as string = Socket.ReadAll()
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Kill(code As Integer)
-		  // Implementation here
+		Sub Kill(reason As Integer)
+		  killFlag = reason
+		  
 		End Sub
 	#tag EndMethod
 
@@ -227,6 +229,10 @@ Protected Class absuser
 
 	#tag Property, Flags = &h0
 		prompt As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Socket As TCPSocket
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
