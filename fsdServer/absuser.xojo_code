@@ -2,7 +2,8 @@
 Protected Class absuser
 	#tag Method, Flags = &h0
 		Sub Block()
-		  // Implementation here
+		  blocked = 1
+		  
 		End Sub
 	#tag EndMethod
 

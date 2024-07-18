@@ -1,6 +1,6 @@
 #tag Class
 Protected Class cluser
-Inherits absuser
+Inherits fsdServer.absuser
 	#tag Method, Flags = &h0
 		Function callsignok(name as string, cid as string) As integer
 		  //ToDo add functionality

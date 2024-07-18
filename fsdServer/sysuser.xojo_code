@@ -1,6 +1,6 @@
 #tag Class
 Protected Class sysuser
-Inherits absuser
+Inherits fsdServer.absuser
 	#tag Method, Flags = &h0
 		Sub Constructor(fd As Integer, parent As SysInterface, peer As String, portnum As Integer, g As Integer)
 		  

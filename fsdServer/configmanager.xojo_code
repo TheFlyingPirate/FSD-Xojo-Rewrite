@@ -1,6 +1,6 @@
 #tag Class
 Protected Class configmanager
-Inherits process
+Inherits fsdServer.process
 	#tag Method, Flags = &h0
 		Function creategroup(name as String) As configgroup
 		  //ToDo Add Functionality

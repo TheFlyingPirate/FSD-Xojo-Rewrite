@@ -1,6 +1,6 @@
 #tag Class
 Protected Class mm
-Inherits process
+Inherits fsdServer.process
 	#tag Method, Flags = &h0
 		Sub addq(dest as String, metar as string, parsed as integer, fd as integer)
 		  

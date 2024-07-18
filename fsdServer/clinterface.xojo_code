@@ -1,6 +1,6 @@
 #tag Class
 Protected Class clinterface
-Inherits tcpinterface
+Inherits fsdServer.tcpinterface
 	#tag Method, Flags = &h0
 		Function calcrange(from as client, toc as client, type as integer, range as integer) As Integer
 		  //ToDo add functionality

@@ -1,6 +1,6 @@
 #tag Class
 Protected Class tcpinterface
-Inherits process
+Inherits fsdServer.process
 	#tag Method, Flags = &h0
 		Sub addguard(who as absuser)
 		  
