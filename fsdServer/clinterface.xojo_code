@@ -2,32 +2,75 @@
 Protected Class clinterface
 Inherits fsdServer.tcpinterface
 	#tag Method, Flags = &h0
-		Function calcrange(from as client, toc as client, type as integer, range as integer) As Integer
-		  //ToDo add functionality
+		Function calcrange(from as client, toc as client, type as fsdserver.cl, range as integer) As Integer
+		  Dim x,y as integer
+		  Select Case type
+		  case CL.PILOTPOS
+		    return range
+		  case CL.ATCPOS
+		    if toc.type = CLIENT_ATC then
+		      return toc.visualrange
+		    end
+		    x=toc.getrange()
+		    y=from.getrange()
+		    if from.type = CLIENT_PILOT then //CLIENT PILOT
+		      return x +y
+		    end
+		    if x>y then
+		      return x
+		    end
+		    return y
+		  else
+		    return range
+		  End Select
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Function getbroad(s as string) As Integer
-		  //ToDo add functionality
+		  Dim broad as integer = CLIENT_ALL
+		  if s = "*P" then
+		    broad = CLIENT_PILOT
+		  elseif s="*A" then
+		    broad = CLIENT_ATC
+		  end
+		  return broad
+		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub handlekill(who as client, reason as string)
-		  //ToDo add functionality
+		  if who.location<>myserver then
+		    return
+		  end
+		  
+		  for each u as absuser in users
+		    if u isa cluser then
+		      Dim tcl as cluser = cluser(u)
+		      if tcl.thisclient = who then
+		        Dim buf as string = sprintf("SERVER:%s:%s",who.callsign,reason)
+		        sendpacket(who,NIL,NIL,CLIENT_ALL,-1,CL.KILL,buf)
+		        u.Kill(KILL.KILL)
+		      end
+		    end
+		  next
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub sendaa(who as client, ex as absuser)
-		  //ToDo add functionality
+		  Dim data as string
+		  data = sprintf("%s:SERVER:%s:%s::%d",who.callsign,who.realname,who.cid,who.rating,who.protocol)
+		  sendpacket(NIL,NIL,ex,CLIENT_ALL,-1,CL.ADDATC,data)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub sendap(who as client, ex as absuser)
-		  //ToDo add functionality
+		  Dim data as string
+		  data = sprintf("%s:SERVER:%s::%d:%s:%d",who.callsign,who.cid,who.rating,who.protocol,who.simtype)
+		  sendpacket(Nil,Nil,ex,CLIENT_ALL,-1,CL.ADDPILOT, data)
 		End Sub
 	#tag EndMethod
 
@@ -68,7 +111,7 @@ Inherits fsdServer.tcpinterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub sendpacket(dest as client, source as client, exclude as absuser, broad as integer, range as integer, cmd as integer, data as string)
+		Sub sendpacket(dest as client, source as client, exclude as absuser, broad as integer, range as integer, cmd as fsdServer.cl, data as string)
 		  //ToDo add functionality
 		End Sub
 	#tag EndMethod

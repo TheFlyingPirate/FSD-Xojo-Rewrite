@@ -255,6 +255,39 @@ Protected Module fsdServer
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h1
+		Protected Function Repeat(s as String, repeatCount as Integer) As String
+		  // Concatenate a string to itself 'repeatCount' times.
+		  // Example: Repeat("spam ", 5) = "spam spam spam spam spam ".
+		  
+		  #pragma disablebackgroundTasks
+		  
+		  if repeatCount <= 0 then return ""
+		  if repeatCount = 1 then return s
+		  
+		  // Implementation note: normally, you don't want to use string concatenation
+		  // for something like this, since that creates a new string on each operation.
+		  // But in this case, we can double the size of the string on iteration, which
+		  // quickly reduces the overhead of concatenation to insignificance.  This method
+		  // is faster than any other we've found (short of declares, which were only
+		  // about 2X faster and were quite platform-specific).
+		  
+		  Var desiredLenB As Integer = s.Bytes * repeatCount
+		  Var output as String = s
+		  Var cutoff as Integer = (desiredLenB+1)\2
+		  Var curLenB as Integer = output.Bytes
+		  
+		  while curLenB < cutoff
+		    output = output + output
+		    curLenB = curLenB + curLenB
+		  wend
+		  
+		  output = output + output.LeftBytes( desiredLenB - curLenB) 
+		  return output
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub setconfigfile(name as string)
 		  System.DebugLog("setconfigfile Not yet implemented")
@@ -276,6 +309,143 @@ Protected Module fsdServer
 		  System.DebugLog("sprintdate Not yet implemented")
 		  
 		  Return ""
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function sprintf(src as string, ParamArray data as Variant) As string
+		  // Returns a string produced according to the formatting string <src>.
+		  // The format string <src> is composed of zero or more directives: ordinary
+		  // characters (excluding %) that are
+		  // copied directly to the result, and conversion
+		  // specifications, each of which results in fetching its
+		  // own parameter.
+		  // For details, see http://de.php.net/manual/en/function.sprintf.php
+		  
+		  // Attention: This function differs from the PHP sprintf() function in that
+		  // it formats floating numbers according to the locale settings.
+		  // For example, in Germany,
+		  //    sprintf("%04.2f", 123.45)
+		  // will return "0123,45".
+		  
+		  // Written by Frank Bitterlich, bitterlich@gsco.de
+		  // Additional work by Florent Pillet, florent@florentpillet.com
+		  
+		  // NOTE: This method is currently available only to GUI apps due
+		  // to <http://www.realsoftware.com/feedback/viewreport.php?reportid=owsxeqnf>.
+		  // Once that bug is fixed, we can make this available to console apps too.
+		  
+		  Var rex as new RegEx
+		  Var match as RegExMatch
+		  Var argtype, padding, alignment, precstr, replacement, frmstr, s as string
+		  Var p, width, precision, index, start, length as integer
+		  Var vf as double
+		  Var datum As Variant
+		  
+		  rex.SearchPattern = "(%)(0|/s|'.)?(-)?(\d*)(\.\d+)?([%bcdeufosxX])"
+		  rex.Options.Greedy = true
+		  match = rex.Search(src)
+		  index = -1
+		  
+		  do until match = nil
+		    if match.SubExpressionCount = 7 then
+		      Var interim as string = " " + match.SubExpressionString(2)
+		      padding = interim.Right(1)
+		      // if padding = "" then padding = " " // default: space
+		      alignment = match.SubExpressionString(3)
+		      width = Val(match.SubExpressionString(4))
+		      precstr = match.SubExpressionString(5).middle( 2)
+		      precision = Val(precstr)
+		      if precstr="" then precision = 6
+		      
+		      argtype = match.SubExpressionString(6)
+		      if argtype <> "%" then
+		        index = index + 1
+		        if index > data.LastIndex then
+		          datum = 0
+		        else
+		          datum = data(index)
+		        end if
+		      end if
+		      
+		      select case argtype
+		      case "%"
+		        replacement = "%"
+		        
+		      case "b" // binary int
+		        replacement = bin(datum)
+		        
+		      case "c" // character
+		        replacement = Encodings.UTF8.Chr(datum)
+		        width = 0
+		        
+		      case "d" // signed int
+		        if padding = "0" then
+		          frmstr = "-"+Repeat("0", width)
+		          if datum<0 then frmstr = frmstr.Left( frmstr.Length-1) 
+		        else
+		          frmstr = "-#"
+		        end if
+		        replacement = Format(datum, frmstr)
+		        
+		      case "e" // scientific notation
+		        vf = datum
+		        frmstr = "-#."+Repeat("0", precision)+"e+"
+		        Replacement = Format(vf, frmstr)
+		        p = Replacement.IndexOf("e")
+		        // Make sure the part after the "e" has two digits
+		        Replacement = Replacement.left(p) + Format(Val(Replacement.middle( p+1)), "+00")
+		        
+		      case "u" // unsigned int
+		        replacement = Format(datum, "#")
+		        
+		      case "f" // signed float
+		        if padding = "0" then
+		          frmstr = "-"+Repeat("0", width)
+		          if datum<0 then frmstr = frmstr.left( frmstr.length-1)
+		        else
+		          frmstr = "-#"
+		        end if
+		        if precision > 0 then
+		          frmstr = frmstr + "." + Repeat("0", precision)
+		        end if
+		        Replacement = Format(datum, frmstr)
+		        if precision > 0 and padding<>"0" then width = width + precision + 1
+		        
+		      case "o" // octal int
+		        replacement = Oct(datum)
+		        
+		      case "s" // string
+		        replacement = datum
+		        
+		      case "x" // hex int; uppercase "X" means uppercase hex, "x" is lowercase hex
+		        replacement = hex(datum)
+		        if asc(argtype) = &h58 then // uppercase "X"
+		          replacement = replacement.Uppercase
+		        else // lowercase "x"
+		          replacement = replacement.Lowercase
+		        end if
+		      end select
+		      
+		      if width>replacement.Length then
+		        if alignment="-" then // align left
+		          replacement=replacement+Repeat(padding, width-replacement.length)
+		        else // align right
+		          replacement=Repeat(padding, width-replacement.length)+replacement
+		        end if
+		      end if
+		    end if
+		    start = match.SubExpressionStartB(0)
+		    length = match.SubExpressionString(0).Bytes
+		    
+		    s = src.LeftBytes( start) + replacement
+		    src = s + src.MiddleBytes(start+length)
+		    
+		    match = rex.Search(src, s.Bytes)
+		  loop
+		  
+		  return src
+		  
 		End Function
 	#tag EndMethod
 
@@ -412,6 +582,15 @@ Protected Module fsdServer
 	#tag EndConstant
 
 	#tag Constant, Name = CLIENTTIMEOUT, Type = Double, Dynamic = False, Default = \"800", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = CLIENT_ALL, Type = Double, Dynamic = False, Default = \"3", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = CLIENT_ATC, Type = Double, Dynamic = False, Default = \"2", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = CLIENT_PILOT, Type = Double, Dynamic = False, Default = \"1", Scope = Public
 	#tag EndConstant
 
 	#tag Constant, Name = CONNECTDELAY, Type = Double, Dynamic = False, Default = \"20", Scope = Public

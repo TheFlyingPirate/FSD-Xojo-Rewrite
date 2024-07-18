@@ -122,6 +122,11 @@ Inherits fsdServer.absuser
 	#tag EndMethod
 
 
+	#tag Property, Flags = &h0
+		thisclient As client
+	#tag EndProperty
+
+
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Name"
