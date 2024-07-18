@@ -10,6 +10,30 @@ Protected Class absuser
 	#tag Method, Flags = &h1
 		Protected Sub CalcFeed()
 		  // Implementation here
+		  Dim now As Integer = mtime()
+		  Dim elapsed As Integer = now - prevFeedCheck
+		  Dim fact1 As Double = elapsed / 300.0
+		  Dim fact2 As Double = 1.0 - fact1
+		  Dim newFeed As Integer = feedCount / elapsed
+		  
+		  If feed = -1 Then
+		    feed = newFeed
+		  Else
+		    feed = CType(newFeed * fact1 + feed * fact2, Integer)
+		  End If
+		  
+		  feedCount = 0
+		  prevFeedCheck = now
+		  Dim bandwidth As Integer = feed
+		  
+		  If baseParent.FeedStrategy = FEED_BOTH Then
+		    bandwidth = bandwidth / 2
+		  End If
+		  
+		  If bandwidth > 50 Then
+		    outBufSoftLimit = bandwidth * 30
+		  End If
+		  
 		End Sub
 	#tag EndMethod
 
