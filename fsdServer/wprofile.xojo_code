@@ -43,14 +43,14 @@ Protected Class wprofile
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub LoadArray(array() As String, count As Integer)
+		Sub LoadArray(s() As String, count As Integer)
 		  // Implementation here
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function ParseAlt(array() As String, count As Integer) As Integer
+		Function ParseAlt(s() As String, count As Integer) As Integer
 		  // Implementation here
 		  Return 0
 		  
@@ -58,14 +58,14 @@ Protected Class wprofile
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ParseMetar(array() As String, count As Integer)
+		Sub ParseMetar(s() As String, count As Integer)
 		  // Implementation here
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function ParseRvr(array() As String, count As Integer) As Integer
+		Function ParseRvr(s() As String, count As Integer) As Integer
 		  // Implementation here
 		  Return 0
 		  
@@ -73,7 +73,7 @@ Protected Class wprofile
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function ParseSky(array() As String, count As Integer) As Integer
+		Function ParseSky(s() As String, count As Integer) As Integer
 		  // Implementation here
 		  Return 0
 		  
@@ -81,7 +81,7 @@ Protected Class wprofile
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function ParseTemp(array() As String, count As Integer) As Integer
+		Function ParseTemp(s() As String, count As Integer) As Integer
 		  // Implementation here
 		  Return 0
 		  
@@ -89,7 +89,7 @@ Protected Class wprofile
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function ParseVis(array() As String, count As Integer) As Integer
+		Function ParseVis(s() As String, count As Integer) As Integer
 		  // Implementation here
 		  Return 0
 		  
@@ -97,7 +97,7 @@ Protected Class wprofile
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function ParseWind(array() As String, count As Integer) As Integer
+		Function ParseWind(s() As String, count As Integer) As Integer
 		  // Implementation here
 		  Return 0
 		  
@@ -105,7 +105,7 @@ Protected Class wprofile
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function ParseWx(array() As String, count As Integer) As Integer
+		Function ParseWx(s() As String, count As Integer) As Integer
 		  // Implementation here
 		  Return 0
 		  

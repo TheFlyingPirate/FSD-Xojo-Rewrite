@@ -2,7 +2,7 @@
 Protected Class sysinterface
 Inherits fsdServer.tcpinterface
 	#tag Method, Flags = &h0
-		Sub Constructor()
+		Sub Constructor(port as integer, code as string, descr as string)
 		  // Calling the overridden superclass constructor.
 		  Super.Constructor(port, code, descr)
 		  
