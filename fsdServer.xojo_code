@@ -1,6 +1,53 @@
 #tag Module
 Protected Module fsdServer
 	#tag Method, Flags = &h0
+		Sub AddFile(ParamArray args() As Variant)
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function BreakArgs(args As String, parts() As String, maxParts As Integer) As Integer
+		  // Implementation here
+		  Return 0
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function BreakPacket(packet As String, parts() As String, maxParts As Integer) As Integer
+		  // Implementation here
+		  Return 0
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function CatArgs(args() As String, count As Integer, separator As String) As String
+		  // Implementation here
+		  Return ""
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function CatCommand(commands() As String, count As Integer, separator As String) As String
+		  // Implementation here
+		  Return ""
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function ConfigGets(s As String, size As Integer) As String
+		  // Implementation here
+		  Return ""
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DBLog(msg As String, level As Integer)
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function dist(lat1 as double, lon1 as double, lat2 as double, lon2 as double) As double
 		  Dim dist, dlon as double
 		  dlon = lon2-lon1
@@ -18,12 +65,40 @@ Protected Module fsdServer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub DoLog(level As Integer, ParamArray args() As Variant)
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub FindHostname(ip As UInt32, hostname As String)
+		  // Implementation here
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function FindItem(what As String, buf As String) As Integer
+		  // Implementation here
+		  Return 0
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function findsection(section as String) As integer
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function getCert(name as string) As Certificate
 		  for each c as certificate in Certificates
 		    if c.cid = name then
 		      return c
 		    end
 		  next
+		  
 		End Function
 	#tag EndMethod
 
@@ -42,7 +117,145 @@ Protected Module fsdServer
 		  certLevels.add("INSTRUCTOR3")
 		  certLevels.add("SUPERVIOSR")
 		  certLevels.add("ADMINISTRATOR")
+		  
+		  cmdNames.add("NOTIFY")
+		  cmdnames.add("REQMETAR")
+		  cmdnames.add("PING")
+		  cmdnames.add("PONG")
+		  cmdnames.add("SYNC")
+		  cmdnames.add("LINKDOWN")
+		  cmdnames.add("NOWX")
+		  cmdnames.add("ADDCLIENT")
+		  cmdnames.add("RMCLIENT")
+		  cmdnames.add("PLAN")
+		  cmdnames.add("PD")
+		  cmdnames.add("AD")
+		  cmdnames.add("ADDCERT")
+		  cmdnames.add("MC")
+		  cmdnames.add("WX")
+		  cmdnames.add("METAR")
+		  cmdnames.add("AWPROF")
+		  cmdnames.add("DWPROF")
+		  cmdnames.add("KILL")
+		  cmdnames.add("RESET")
+		  
+		  silentok.Add(1) // Notify
+		  silentok.Add(1) // ReqMetar
+		  silentok.Add(1) // Ping
+		  silentok.Add(1) // Pong
+		  silentok.Add(1) // Sync
+		  silentok.Add(1) // LinkDown
+		  silentok.Add(1) // NoWx
+		  silentok.Add(1) // AddClient
+		  silentok.Add(1) // RmClient
+		  silentok.Add(1) // Plan
+		  silentok.Add(0) // PD
+		  silentok.Add(0) // AD
+		  silentok.Add(1) // AddCert
+		  silentok.Add(0) // MC
+		  silentok.Add(1) // WX
+		  silentok.Add(1) // Metar
+		  silentok.Add(1) // Add W Profile
+		  silentok.Add(1) // Del W Profile
+		  silentok.Add(1) // Kill Client
+		  silentok.Add(1) // Reset
+		  silentok.Add(0) // End
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function MConnect(sock As Integer, addr As MemoryBlock, addrlen As Integer, timeout As Integer) As Integer
+		  // Implementation here
+		  Return 0
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function MGMTTime() As Integer
+		  // Implementation here
+		  Return -1
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function MRand() As Integer
+		  // Implementation here
+		  Return 0
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function MRound(value As Double) As Integer
+		  // Implementation here
+		  Return 0
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function MTime() As Integer
+		  // Implementation here
+		  Return -1
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function PrintLoc(lat As Double, lon As Double, loc As String) As String
+		  // Implementation here
+		  Return ""
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub setconfigfile(name as string)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub SnapPacket(packet As String, snap As String, size As Integer)
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function SprintDate(now As Integer, buf As String) As String
+		  // Implementation here
+		  Return ""
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function SprintGMT(now As Integer, buf As String) As String
+		  // Implementation here
+		  Return ""
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function SprintGMTDate(now As Integer, buf As String) As String
+		  // Implementation here
+		  Return ""
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function SprintTime(now As Integer, buf As String) As String
+		  // Implementation here
+		  Return ""
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub StartTimer()
+		  // Implementation here
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function StrUpr(s As String) As String
+		  // Implementation here
+		  Return ""
+		End Function
 	#tag EndMethod
 
 
@@ -75,7 +288,15 @@ Protected Module fsdServer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		errors() As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		errstr As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		logp As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -91,11 +312,19 @@ Protected Module fsdServer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		nerrors As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		serverinterface As servinterface
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		servers() As Server
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		silentok() As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -249,6 +478,8 @@ Protected Module fsdServer
 	#tag EndStructure
 
 	#tag Structure, Name = loghis, Flags = &h0
+		msg as string * 100
+		level as integer
 	#tag EndStructure
 
 	#tag Structure, Name = mmq, Flags = &h0
@@ -398,6 +629,22 @@ Protected Module fsdServer
 			Visible=true
 			Group="Position"
 			InitialValue="0"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="errstr"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="maxLevel"
+			Visible=false
+			Group="Behavior"
+			InitialValue="12"
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty

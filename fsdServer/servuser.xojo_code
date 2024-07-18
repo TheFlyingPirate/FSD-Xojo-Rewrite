@@ -1,6 +1,186 @@
 #tag Class
 Protected Class servuser
-Inherits absuser
+Inherits fsdServer.absuser
+	#tag Method, Flags = &h0
+		Sub Constructor(d as integer, p as servinterface, pn as string, portnum as integer, g as integer)
+		  //Super.Constructor(d,p,pn,portnum,g)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub doparse(s as string)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub execad(s() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function execaddclient(s() as string, count as integer) As integer
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub execaddwp(s() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function execcert(s() as string, count as integer) As integer
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub execdelwp(s() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub execkill(s() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub execlinkdown(s() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub execmetar(s() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub execnotify(s() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub execnowx(s() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub execpd(s() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub execpd1(s() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub execpd2(s() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub execpd3(s() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub execping(s() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub execpong(s() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub execreqmetar(s() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub execreset(s() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub execrmclient(s() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub execweather(s() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub feed()
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub list(s as string)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function needlocaldelivery(dest as String) As integer
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub parse(s() as string)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub runcmd(num as integer, data() as string, count as integer)
+		  
+		End Sub
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h0
+		clientok As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		parent As servinterface
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		startuptime As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		thissserver As server
+	#tag EndProperty
+
+
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Name"
