@@ -167,20 +167,20 @@ Protected Class absuser
 
 	#tag Method, Flags = &h0
 		Function Send(data As String) As Integer
-		  // Implementation here
-		  Return 0
+		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub SendPing()
-		  // Implementation here
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub SetActive()
-		  // Implementation here
+		  lastActive = MTime()
+		  lastping = lastActive
 		End Sub
 	#tag EndMethod
 
