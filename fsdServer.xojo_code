@@ -337,6 +337,10 @@ Protected Module fsdServer
 		systeminterface As sysinterface
 	#tag EndProperty
 
+	#tag Property, Flags = &h0
+		users() As absuser
+	#tag EndProperty
+
 
 	#tag Constant, Name = CALLSIGNBYTES, Type = Double, Dynamic = False, Default = \"12", Scope = Public
 	#tag EndConstant

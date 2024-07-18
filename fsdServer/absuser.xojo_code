@@ -38,8 +38,28 @@ Protected Class absuser
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor(fd As Integer, baseParent As TcpInterface, peer As String, port As Integer, g As Integer)
-		  // Implementation here
+		Sub Constructor(d As Integer, p As TcpInterface, peername As String, portnum As Integer, g As Integer)
+		  fd = d
+		  killFlag = 0
+		  inBuf = ""
+		  outBuf = ""
+		  inSize = 1
+		  outSize = 1
+		  blocked = 0
+		  prompt = ""
+		  feedCount = 0
+		  feed = -1
+		  baseParent = p
+		  timeout = 0
+		  peer = peername
+		  port = portnum
+		  prevFeedCheck = 0
+		  guardFlag = g
+		  outBufSoftLimit = -1
+		  SetActive()
+		  
+		  // Add the user to the users() list
+		  users.Append(Me)
 		End Sub
 	#tag EndMethod
 
