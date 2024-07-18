@@ -44,6 +44,72 @@ Protected Module fsdServer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function clcmdnames(c as CL) As String
+		  Select Case c
+		  Case cl.ADDATC
+		    return "#AA"
+		  Case cl.RMATC
+		    return "#DA"
+		  Case cl.ADDPILOT
+		    return "#AP"
+		  Case cl.RMPILOT
+		    return "#DP"
+		  Case cl.REQHANDOFF
+		    return "$HO"
+		  Case cl.MESSAGE
+		    return "#TM"
+		  Case cl.REQWEATHER
+		    return "#RW"
+		  Case cl.PILOTPOS
+		    return "@"
+		  Case cl.ATCPOS
+		    return "%"
+		  Case cl.ping
+		    return "$PI"
+		  Case cl.pong
+		    return "$PO"
+		  Case cl.ACHANDOFF
+		    return "$HA"
+		  Case cl.PLAN
+		    return "$FP"
+		  Case cl.SB
+		    return "#SB"
+		  Case cl.PC
+		    return "#PC"
+		  Case cl.WEATHER
+		    return "#WX"
+		  Case cl.CLOUDDATA
+		    return "#CD"
+		  case cl.WINDDATA
+		    return "#WD"
+		  case cl.TEMPDATA
+		    return "#TD"
+		  case cl.REQCOM
+		    return "$C?"
+		  case cl.REPCOM
+		    return "$CI"
+		  case cl.REQACARS
+		    return "$AX"
+		  case cl.REPACARS
+		    return "$AR"
+		  case cl.ERROR
+		    return "$ER"
+		  case cl.CQ
+		    return "$CQ"
+		  case cl.CR
+		    return "$CR"
+		  case cl.KILL
+		    return "$!!"
+		  case cl.WDELTA
+		    return "#DL"
+		  else
+		    return ""
+		  End Select
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function ConfigGets(s As String, size As Integer) As String
 		  // Implementation here
 		  System.DebugLog("ConfigGets Not yet implemented")
@@ -507,10 +573,6 @@ Protected Module fsdServer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		clcmdnames() As String
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
 		clientinterface As clinterface
 	#tag EndProperty
 
@@ -730,7 +792,8 @@ Protected Module fsdServer
 		ceiling as integer
 		  floor as integer
 		  icing as integer
-		turbulence as integer
+		  turbulence as integer
+		coverage as integer
 	#tag EndStructure
 
 	#tag Structure, Name = loghis, Flags = &h0
@@ -902,13 +965,29 @@ Protected Module fsdServer
 			Group="Behavior"
 			InitialValue=""
 			Type="String"
-			EditorType=""
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="maxLevel"
 			Visible=false
 			Group="Behavior"
 			InitialValue="12"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="nerrors"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="logp"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty

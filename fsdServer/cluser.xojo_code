@@ -116,7 +116,7 @@ Inherits fsdServer.absuser
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function showerror(num as integer, env as string) As integer
+		Function showerror(num as ERR, env as string) As integer
 		  //ToDo add functionality
 		End Function
 	#tag EndMethod
