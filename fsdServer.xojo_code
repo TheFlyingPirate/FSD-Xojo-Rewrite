@@ -551,6 +551,18 @@ Protected Module fsdServer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function strpbrk(source as string, check as string) As Boolean
+		  for i as integer = 0 to check.Length -1
+		    Dim ch as string = check.Middle(i,1)
+		    if source.Contains(ch) then
+		      return true
+		    end
+		  next
+		  return false
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function StrUpr(s As String) As String
 		  // Implementation here
 		  System.DebugLog("strupr Not yet implemented")
