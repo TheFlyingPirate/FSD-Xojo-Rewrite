@@ -251,7 +251,15 @@ Inherits fsdServer.absuser
 
 	#tag Method, Flags = &h0
 		Sub execatcpos(s() as string, count as integer)
-		  //ToDo add functionality
+		  If count < 8 Then
+		    ShowError(ERR.SYNTAX, "")
+		    Return
+		  End If
+		  
+		  If Not CheckSource(s(0)) Then Return
+		  
+		  thisClient.UpdateATC(s)
+		  ServerInterface.SendATCData(thisClient, Me)
 		End Sub
 	#tag EndMethod
 
