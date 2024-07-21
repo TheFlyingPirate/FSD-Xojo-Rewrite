@@ -21,13 +21,29 @@ Inherits fsdServer.absuser
 
 	#tag Method, Flags = &h0
 		Function checklogin(id as string, password as string, req as integer) As integer
-		  //ToDo add functionality
+		  if id = "" Then Return -2
+		  Dim max as integer
+		  Dim ok as boolean = MaxLevel(id,password,max)
+		  if not ok then
+		    Dim se as integer = showerror(ERR.CIDINVALID,id)
+		    Return -1
+		  end
+		  if req>max then
+		    return max
+		  else
+		    return req
+		  end
+		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function checksource(from as string) As integer
-		  //ToDo add functionality
+		Function checksource(from as string) As boolean
+		  if from <> thisclient.callsign then
+		    Dim i as integer = showerror(ERR.SRCINVALID,from)
+		    Return False
+		  end
+		  Return True
 		End Function
 	#tag EndMethod
 
@@ -35,7 +51,20 @@ Inherits fsdServer.absuser
 		Sub Constructor(fd as integer, p as clinterface, pn as string, portnum as integer, gg as integer)
 		  // Calling the overridden superclass constructor.
 		  Super.Constructor(fd, p, pn, portnum, gg)
-		  
+		  parent = p
+		  thisclient = nil
+		  Dim gu as configgroup = configman.getgroup("system")
+		  Dim e as configentry
+		  if gu<> nil then
+		    e = gu.getentry("maxclients")
+		  else
+		    e=nil
+		  end
+		  'Dim total as Integer = manager.getvar(p.varcurrent).value.IntegerValue
+		  'if e<>Nil and Val(e.getdata)<=total then
+		  'Dim i as integer = showerror(ERR.SERVFULL,"")
+		  'Kill(kill.COMMAND)
+		  'end
 		End Sub
 	#tag EndMethod
 
@@ -118,6 +147,24 @@ Inherits fsdServer.absuser
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function MaxLevel(id as string, password as string, byref max as integer) As Boolean
+		  Dim temp as certificate = getCert(id)
+		  if temp = nil then
+		    max = LEV_OBSPILOT
+		    return false
+		  end
+		  if temp.password =  password then
+		    max = temp.level
+		    temp.prevVisit = Datetime.Now.SecondsFrom1970
+		    return true
+		    
+		  end
+		  max = LEV_OBSPILOT
+		  return false
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub parse(s() as string)
 		  //ToDo Add functionality
 		End Sub
@@ -135,6 +182,10 @@ Inherits fsdServer.absuser
 		End Function
 	#tag EndMethod
 
+
+	#tag Property, Flags = &h0
+		parent As clinterface
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		thisclient As client

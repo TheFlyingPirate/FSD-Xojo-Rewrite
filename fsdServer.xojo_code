@@ -208,6 +208,8 @@ Protected Module fsdServer
 
 	#tag Method, Flags = &h0
 		Sub Initilize()
+		  configman = new configmanager
+		  
 		  certLevels.add("SUSPENDED")
 		  certLevels.add("OBSPILOT")
 		  certLevels.add("STUDENT1")
@@ -976,14 +978,6 @@ Protected Module fsdServer
 			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="maxLevel"
-			Visible=false
-			Group="Behavior"
-			InitialValue="12"
-			Type="Integer"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="nerrors"
