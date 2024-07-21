@@ -68,7 +68,7 @@ Inherits fsdServer.process
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub requestmetar(client as string, metar as string, parsed as string, fd as integer)
+		Sub requestmetar(client as string, metar as string, parsed as integer, fd as integer)
 		  
 		End Sub
 	#tag EndMethod

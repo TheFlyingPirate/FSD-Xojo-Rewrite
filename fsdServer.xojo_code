@@ -621,6 +621,10 @@ Protected Module fsdServer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		MetarManager As MM
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		myserver As Server
 	#tag EndProperty
 

@@ -184,7 +184,18 @@ Inherits fsdServer.absuser
 
 	#tag Method, Flags = &h0
 		Sub execacars(s() as string, count as integer)
-		  //ToDo add functionality
+		  If count < 3 Then
+		    ShowError(ERR.SYNTAX, "")
+		    Return
+		  End If
+		  
+		  If Not CheckSource(s(0)) Then Return
+		  
+		  If StrComp(s(2), "METAR", CType(ComparisonOptions.CaseInsensitive,Int32)) = 0 And count > 3 Then
+		    Dim source As String = "%" + thisClient.Callsign
+		    MetarManager.RequestMetar(source, s(3), 0, -1)
+		    
+		  End If
 		End Sub
 	#tag EndMethod
 
