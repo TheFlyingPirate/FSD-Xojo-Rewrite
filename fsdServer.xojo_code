@@ -621,6 +621,10 @@ Protected Module fsdServer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		maxcl As Integer = 27
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		maxLevel As Integer = 12
 	#tag EndProperty
 

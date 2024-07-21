@@ -407,8 +407,14 @@ Inherits fsdServer.absuser
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getcomm(s as string) As CL
-		  //ToDo add functionality
+		Function getcomm(cmd as string) As CL
+		  for i as integer = 0 to maxcl
+		    Dim ce as CL = CL(i)
+		    if cmd.left(clcmdnames(ce).Length) = clcmdnames(ce) then
+		      return ce
+		    end
+		  next
+		  return cl.UNOWN
 		End Function
 	#tag EndMethod
 
