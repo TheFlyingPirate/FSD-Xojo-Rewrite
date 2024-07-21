@@ -35,11 +35,15 @@ Protected Module fsdServer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function CatCommand(commands() As String, count As Integer, separator As String) As String
-		  // Implementation here
-		  System.DebugLog("CatCommand Not yet implemented")
-		  
-		  Return ""
+		Function CatCommand(s() As String, n As Integer, buf As String) As String
+		  buf=""
+		  For x As Integer = 0 To n - 1
+		    If x > 0 Then
+		      buf = buf + ":"
+		    End If
+		    buf = buf + s(x)
+		  Next
+		  Return buf
 		End Function
 	#tag EndMethod
 
@@ -732,6 +736,30 @@ Protected Module fsdServer
 	#tag EndConstant
 
 	#tag Constant, Name = LOGFILE, Type = String, Dynamic = False, Default = \"log.txt", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = L_ALERT, Type = Double, Dynamic = False, Default = \"1", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = L_CRIT, Type = Double, Dynamic = False, Default = \"2", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = L_DEBUG, Type = Double, Dynamic = False, Default = \"6", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = L_EMERG, Type = Double, Dynamic = False, Default = \"0", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = L_ERR, Type = Double, Dynamic = False, Default = \"3", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = L_INFO, Type = Double, Dynamic = False, Default = \"5", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = L_MAX, Type = Double, Dynamic = False, Default = \"7", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = L_WARNING, Type = Double, Dynamic = False, Default = \"4", Scope = Public
 	#tag EndConstant
 
 	#tag Constant, Name = MAXHOPS, Type = Double, Dynamic = False, Default = \"10", Scope = Public

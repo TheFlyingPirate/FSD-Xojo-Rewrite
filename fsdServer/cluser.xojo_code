@@ -257,39 +257,128 @@ Inherits fsdServer.absuser
 		  End If
 		  
 		  If Not CheckSource(s(0)) Then Return
-		  
-		  thisClient.UpdateATC(s)
+		  Dim subarray() as string
+		  for i as integer = 1 to ubound(s)
+		    subarray.add(s(i))
+		  next
+		  thisClient.UpdateATC(subarray)
 		  ServerInterface.SendATCData(thisClient, Me)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub execcq(s() as string, count as integer)
-		  //ToDo add functionality
+		  If count < 3 Then
+		    ShowError(ERR.SYNTAX, "")
+		    Return
+		  End If
+		  
+		  If StrComp(s(1), "server", Ctype(ComparisonOptions.CaseInsensitive,Int32)) <> 0 Then
+		    ExecMulticast(s, count, CL.CQ, 1, 1)
+		    Return
+		  End If
+		  
+		  If StrComp(s(2).Uppercase, "RN", Ctype(ComparisonOptions.CaseInsensitive,Int32)) = 0 Then
+		    Dim cli As Client = GetClient(s(1))
+		    If cli <> Nil Then
+		      Dim data As String = sprintf("%s:%s:RN:%s:USER:%d",cli.callsign,thisclient.callsign,cli.realname,cli.rating)
+		      ClientInterface.SendPacket(thisClient, cli, Nil, CLIENT_ALL, -1, CL.CR, data)
+		      Return
+		    End If
+		  End If
+		  
+		  If StrComp(s(2), "fp", Ctype(ComparisonOptions.CaseInsensitive,Int32)) = 0 Then
+		    Dim cli As Client = GetClient(s(3))
+		    If cli = Nil Then
+		      ShowError(ERR.NOSUCHCS, s(3))
+		      Return
+		    End If
+		    If cli.Plan = Nil Then
+		      ShowError(ERR.NOFP, "")
+		      Return
+		    End If
+		    ClientInterface.SendPlan(thisClient, cli, -1)
+		    Return
+		  End If
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub execd(s() as string, count as integer)
-		  //ToDo add functionality
+		  if count = 0 then
+		    showerror(ERR.SYNTAX,"")
+		    return
+		  end
+		  if not checksource(s(0)) then return
+		  kill(kill.COMMAND)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub execfp(s() as string, count as integer)
-		  //ToDo add functionality
+		  if count < 17 then
+		    showerror(ERR.SYNTAX,"")
+		    return
+		  end
+		  if not checksource(s(0)) then return
+		  Dim subarray() as string
+		  for i as integer = 2 to UBound(s)
+		    subarray.Add(s(i))
+		  next
+		  thisclient.handlefp(subarray)
+		  serverinterface.sendplan("*",thisclient,Nil)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub execkill(s() as string, count as integer)
-		  //ToDo add functionality
+		  Dim junk As String
+		  If count < 3 Then
+		    ShowError(ERR.SYNTAX, "")
+		    Return
+		  End If
+		  
+		  Dim cli As Client = GetClient(s(1))
+		  If cli = Nil Then
+		    ShowError(ERR.NOSUCHCS, s(1))
+		    Return
+		  End If
+		  
+		  If thisClient.Rating < 11 Then
+		    junk = "You are not allowed to kill users!"
+		    ClientInterface.SendGeneric(thisClient.Callsign, thisClient, Nil, Nil, "server", junk, CL.MESSAGE)
+		    junk = thisClient.Callsign + " attempted to remove " + s(1) + ", but was not allowed to"
+		    DoLog(L_ERR, junk)
+		  Else
+		    junk = "Attempting to kill " + s(1)
+		    ClientInterface.SendGeneric(thisClient.Callsign, thisClient, Nil, Nil, "server", junk, CL.MESSAGE)
+		    junk = thisClient.Callsign + " Killed " + s(1)
+		    DoLog(L_INFO, junk)
+		    ServerInterface.SendKill(cli, s(2))
+		  End If
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub execmulticast(s() as string, count as integer, cmd as CL, nargs as integer, multiok as integer)
-		  //ToDo add functionality
+		  nargs = nargs + 2
+		  If count < nargs Then
+		    ShowError(ERR.SYNTAX, "")
+		    Return
+		  End If
+		  
+		  Dim from As String = s(0)
+		  Dim tos As String = s(1)
+		  Dim data As String = ""
+		  Dim subarray() as String
+		  for i as integer = 2 to UBound(s)
+		    subarray.add(s(i))
+		  next
+		  CatCommand(subarray, count - 2, data)
+		  
+		  If Not CheckSource(from) Then Return
+		  
+		  ServerInterface.SendMulticast(thisClient, tos, data, cmd, multiok, Me)
 		End Sub
 	#tag EndMethod
 
