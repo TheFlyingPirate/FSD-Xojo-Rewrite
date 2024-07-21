@@ -131,54 +131,54 @@ Inherits fsdServer.absuser
 
 	#tag Method, Flags = &h0
 		Sub execaa(s() as string, count as integer)
-		  Sub ExecAA(s() As String, count As Integer)
-		    If thisClient <> Nil Then
-		      ShowError(ERR_REGISTERED, "")
-		      Return
-		    End If
-		    
-		    If count < 7 Then
-		      ShowError(ERR_SYNTAX, "")
-		      Return
-		    End If
-		    
-		    Dim err As Integer = CallSignOK(s(0))
-		    If err <> 0 Then
-		      ShowError(err, "")
-		      Kill(KILL_COMMAND)
-		      Return
-		    End If
-		    
-		    If Val(s(6)) <> NEEDREVISION Then
-		      ShowError(ERR_REVISION, "")
-		      Kill(KILL_PROTOCOL)
-		      Return
-		    End If
-		    
-		    Dim req As Integer = Val(s(5))
-		    If req < 0 Then req = 0
-		    
-		    Dim level As Integer = CheckLogin(s(3), s(4), req)
-		    If level = 0 Then
-		      ShowError(ERR_CSSUSPEND, "")
-		      Kill(KILL_COMMAND)
-		      Return
-		    ElseIf level = -1 Then
-		      Kill(KILL_COMMAND)
-		      Return
-		    ElseIf level = -2 Then
-		      level = 1
-		    End If
-		    
-		    If level < req Then
-		      ShowError(ERR_LEVEL, s(5))
-		      Kill(KILL_COMMAND)
-		      Return
-		    End If
-		    
-		    thisClient = New Client(s(3), myServer, s(0), CLIENT_ATC, level, s(6), s(2), -1)
-		    ServerInterface.SendAddClient("*", thisClient, Nil, Me, 0)
-		    ReadMOTD()
+		  
+		  If thisClient <> Nil Then
+		    ShowError(ERR.REGISTERED, "")
+		    Return
+		  End If
+		  
+		  If count < 7 Then
+		    ShowError(ERR.SYNTAX, "")
+		    Return
+		  End If
+		  
+		  Dim err2 As Integer = CallSignOK(s(0))
+		  If err2 <> 0 Then
+		    ShowError(err2, "")
+		    Kill(KILL.COMMAND)
+		    Return
+		  End If
+		  
+		  If Val(s(6)) <> NEEDREVISION Then
+		    ShowError(ERR.REVISION, "")
+		    Kill(KILL.PROTOCOL)
+		    Return
+		  End If
+		  
+		  Dim req As Integer = Val(s(5))
+		  If req < 0 Then req = 0
+		  
+		  Dim level As Integer = CheckLogin(s(3), s(4), req)
+		  If level = 0 Then
+		    ShowError(ERR.CSSUSPEND, "")
+		    Kill(KILL.COMMAND)
+		    Return
+		  ElseIf level = -1 Then
+		    Kill(KILL.COMMAND)
+		    Return
+		  ElseIf level = -2 Then
+		    level = 1
+		  End If
+		  
+		  If level < req Then
+		    ShowError(ERR.LEVEL, s(5))
+		    Kill(KILL.COMMAND)
+		    Return
+		  End If
+		  
+		  thisClient = New Client(s(3), myServer, s(0), CLIENT_ATC, level, s(6), s(2), -1)
+		  ServerInterface.SendAddClient("*", thisClient, Nil, Me, 0)
+		  ReadMOTD()
 		End Sub
 	#tag EndMethod
 
@@ -190,7 +190,51 @@ Inherits fsdServer.absuser
 
 	#tag Method, Flags = &h0
 		Sub execap(s() as string, count as integer)
-		  //ToDo add functionalityexecapexecap
+		  If thisClient <> Nil Then
+		    ShowError(ERR.REGISTERED, "")
+		    Return
+		  End If
+		  
+		  If count < 8 Then
+		    ShowError(ERR.SYNTAX, "")
+		    Return
+		  End If
+		  
+		  Dim errs As Integer = CallSignOK(s(0))
+		  If errs <> 0 Then
+		    ShowError(errs, "")
+		    Kill(KILL.COMMAND)
+		    Return
+		  End If
+		  
+		  If Val(s(5)) <> NEEDREVISION Then
+		    ShowError(ERR.REVISION, "")
+		    Kill(KILL.PROTOCOL)
+		    Return
+		  End If
+		  
+		  Dim req As Integer = Val(s(4))
+		  If req < 0 Then req = 0
+		  
+		  Dim level As Integer = CheckLogin(s(2), s(3), req)
+		  If level < 0 Then
+		    Kill(KILL.COMMAND)
+		    Return
+		  ElseIf level = 0 Then
+		    ShowError(ERR.CSSUSPEND, "")
+		    Kill(KILL.COMMAND)
+		    Return
+		  End If
+		  
+		  If level < req Then
+		    ShowError(ERR.LEVEL, s(4))
+		    Kill(KILL.COMMAND)
+		    Return
+		  End If
+		  
+		  thisClient = New Client(s(2), myServer, s(0), CLIENT_PILOT, level, s(4), s(7), Val(s(6)))
+		  ServerInterface.SendAddClient("*", thisClient, Nil, Me, 0)
+		  ReadMOTD()
 		End Sub
 	#tag EndMethod
 
@@ -286,6 +330,19 @@ Inherits fsdServer.absuser
 
 	#tag Method, Flags = &h0
 		Function showerror(num as ERR, env as string) As integer
+		  //ToDo add functionality
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub showerror(num as integer, env as string)
+		  //ToDo add functionality
+		  showerror(num,env)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function showerror(num as integer, env as string) As integer
 		  //ToDo add functionality
 		End Function
 	#tag EndMethod
