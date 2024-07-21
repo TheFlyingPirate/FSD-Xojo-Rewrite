@@ -80,57 +80,105 @@ Inherits fsdServer.absuser
 		    Return
 		  End If
 		  
-		  If thisClient = Nil And index <> CL_ADDATC And index <> CL_ADDPILOT Then
+		  If thisClient = Nil And index <> CL.ADDATC And index <> CL.ADDPILOT Then
 		    Return
 		  End If
 		  
 		  ' Just a hack to put the pointer on the first arg here
 		  s = s.Mid(Len(clcmdnames(index)) + 1)
-		  count = BreakPacket(s, array)
+		  count = BreakPacket(s, data)
 		  
 		  Select Case index
-		  Case CL_ADDATC
-		    ExecAA(array, count)
-		  Case CL_ADDPILOT
-		    ExecAP(array, count)
-		  Case CL_PLAN
-		    ExecFP(array, count)
-		  Case CL_RMATC, CL_RMPILOT
-		    ExecD(array, count)
-		  Case CL_PILOTPOS
-		    ExecPilotPos(array, count)
-		  Case CL_ATCPOS
-		    ExecATCPos(array, count)
-		  Case CL_PONG, CL_PING
-		    ExecMulticast(array, count, index, 0, 1)
-		  Case CL_MESSAGE
-		    ExecMulticast(array, count, index, 1, 1)
-		  Case CL_REQHANDOFF, CL_ACHANDOFF
-		    ExecMulticast(array, count, index, 1, 0)
-		  Case CL_SB, CL_PC
-		    ExecMulticast(array, count, index, 0, 0)
-		  Case CL_WEATHER
-		    ExecWeather(array, count)
-		  Case CL_REQCOM
-		    ExecMulticast(array, count, index, 0, 0)
-		  Case CL_REPCOM
-		    ExecMulticast(array, count, index, 1, 0)
-		  Case CL_REQACARS
-		    ExecACARS(array, count)
-		  Case CL_CR
-		    ExecMulticast(array, count, index, 2, 0)
-		  Case CL_CQ
-		    ExecCQ(array, count)
-		  Case CL_KILL
-		    ExecKill(array, count)
+		  Case CL.ADDATC
+		    ExecAA(data, count)
+		  Case CL.ADDPILOT
+		    ExecAP(data, count)
+		  Case CL.PLAN
+		    ExecFP(data, count)
+		  Case CL.RMATC, CL.RMPILOT
+		    ExecD(data, count)
+		  Case CL.PILOTPOS
+		    ExecPilotPos(data, count)
+		  Case CL.ATCPOS
+		    ExecATCPos(data, count)
+		  Case CL.PONG, CL.PING
+		    ExecMulticast(data, count, index, 0, 1)
+		  Case CL.MESSAGE
+		    ExecMulticast(data, count, index, 1, 1)
+		  Case CL.REQHANDOFF, CL.ACHANDOFF
+		    ExecMulticast(data, count, index, 1, 0)
+		  Case CL.SB, CL.PC
+		    ExecMulticast(data, count, index, 0, 0)
+		  Case CL.WEATHER
+		    ExecWeather(data, count)
+		  Case CL.REQCOM
+		    ExecMulticast(data, count, index, 0, 0)
+		  Case CL.REPCOM
+		    ExecMulticast(data, count, index, 1, 0)
+		  Case CL.REQACARS
+		    ExecACARS(data, count)
+		  Case CL.CR
+		    ExecMulticast(data, count, index, 2, 0)
+		  Case CL.CQ
+		    ExecCQ(data, count)
+		  Case CL.KILL
+		    ExecKill(data, count)
 		  Case Else
-		    ShowError(ER
+		    Dim i as integer = ShowError(ERR.SYNTAX,"")
+		  End Select
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub execaa(s() as string, count as integer)
-		  //ToDo add functionality
+		  Sub ExecAA(s() As String, count As Integer)
+		    If thisClient <> Nil Then
+		      ShowError(ERR_REGISTERED, "")
+		      Return
+		    End If
+		    
+		    If count < 7 Then
+		      ShowError(ERR_SYNTAX, "")
+		      Return
+		    End If
+		    
+		    Dim err As Integer = CallSignOK(s(0))
+		    If err <> 0 Then
+		      ShowError(err, "")
+		      Kill(KILL_COMMAND)
+		      Return
+		    End If
+		    
+		    If Val(s(6)) <> NEEDREVISION Then
+		      ShowError(ERR_REVISION, "")
+		      Kill(KILL_PROTOCOL)
+		      Return
+		    End If
+		    
+		    Dim req As Integer = Val(s(5))
+		    If req < 0 Then req = 0
+		    
+		    Dim level As Integer = CheckLogin(s(3), s(4), req)
+		    If level = 0 Then
+		      ShowError(ERR_CSSUSPEND, "")
+		      Kill(KILL_COMMAND)
+		      Return
+		    ElseIf level = -1 Then
+		      Kill(KILL_COMMAND)
+		      Return
+		    ElseIf level = -2 Then
+		      level = 1
+		    End If
+		    
+		    If level < req Then
+		      ShowError(ERR_LEVEL, s(5))
+		      Kill(KILL_COMMAND)
+		      Return
+		    End If
+		    
+		    thisClient = New Client(s(3), myServer, s(0), CLIENT_ATC, level, s(6), s(2), -1)
+		    ServerInterface.SendAddClient("*", thisClient, Nil, Me, 0)
+		    ReadMOTD()
 		End Sub
 	#tag EndMethod
 
@@ -177,7 +225,7 @@ Inherits fsdServer.absuser
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub execmulticast(s() as string, count as integer, cnd as integer, nargs as integer, multiok as integer)
+		Sub execmulticast(s() as string, count as integer, cmd as CL, nargs as integer, multiok as integer)
 		  //ToDo add functionality
 		End Sub
 	#tag EndMethod
@@ -227,6 +275,12 @@ Inherits fsdServer.absuser
 	#tag Method, Flags = &h0
 		Sub readmotd()
 		  //ToDo add functionality
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub showerror(num as ERR, env as string)
+		  Dim i as integer = showerror(num,env)
 		End Sub
 	#tag EndMethod
 

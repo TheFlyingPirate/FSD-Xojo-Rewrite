@@ -17,7 +17,7 @@ Protected Module fsdServer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function BreakPacket(packet As String, parts() As String, maxParts As Integer) As Integer
+		Function BreakPacket(packet As String, parts() As String, optional maxParts As Integer = -1) As Integer
 		  // Implementation here
 		  System.DebugLog("BreakPacket Not yet implemented")
 		  

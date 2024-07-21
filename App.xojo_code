@@ -10,6 +10,7 @@ Inherits ConsoleApplication
 		  Dim cu as new fsdServer.cluser(1,ci,"21",21,21)
 		  cu.thisclient = cl
 		  ci.sendap(cl,nil)
+		  
 		End Function
 	#tag EndEvent
 
