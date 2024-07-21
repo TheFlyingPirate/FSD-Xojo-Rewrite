@@ -33,7 +33,9 @@ Inherits fsdServer.absuser
 
 	#tag Method, Flags = &h0
 		Sub Constructor(fd as integer, p as clinterface, pn as string, portnum as integer, gg as integer)
-		  //ToDo Add functionality
+		  // Calling the overridden superclass constructor.
+		  Super.Constructor(fd, p, pn, portnum, gg)
+		  
 		End Sub
 	#tag EndMethod
 

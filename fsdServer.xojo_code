@@ -305,10 +305,9 @@ Protected Module fsdServer
 
 	#tag Method, Flags = &h0
 		Function MTime() As Integer
-		  // Implementation here
-		  System.DebugLog("mtime Not yet implemented")
+		  //ToDo implement ntime
+		  return datetime.now.SecondsFrom1970
 		  
-		  Return -1
 		End Function
 	#tag EndMethod
 
@@ -565,9 +564,8 @@ Protected Module fsdServer
 	#tag Method, Flags = &h0
 		Function StrUpr(s As String) As String
 		  // Implementation here
-		  System.DebugLog("strupr Not yet implemented")
-		  
-		  Return ""
+		  //System.DebugLog("strupr Not yet implemented")
+		  Return s.Uppercase
 		End Function
 	#tag EndMethod
 

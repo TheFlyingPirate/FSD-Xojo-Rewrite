@@ -175,7 +175,7 @@ Inherits fsdServer.tcpinterface
 		        if dest<>nil and c<>dest then
 		          continue
 		        end
-		        if c.type<>-1 and broad <> 0 then
+		        if c.type=0 and broad = 0 then
 		          continue
 		        end
 		        if source<>nil and (range<>-1 or cmd=cl.PILOTPOS or cmd=cl.ATCPOS) then

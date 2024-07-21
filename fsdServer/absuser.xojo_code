@@ -215,6 +215,7 @@ Protected Class absuser
 		  end
 		  //Todo
 		  System.DebugLog("absuser.uprintf Not yet implemented")
+		  System.DebugLog(s)
 		  
 		End Sub
 	#tag EndMethod
@@ -225,6 +226,11 @@ Protected Class absuser
 		    return
 		  end
 		  System.DebugLog("absuser.uslprintf Not yet implemented")
+		  System.DebugLog(format)
+		  System.DebugLog(code.ToString)
+		  for each a as Variant in args
+		    System.DebugLog(a.StringValue)
+		  next
 		  
 		End Sub
 	#tag EndMethod
