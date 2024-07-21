@@ -396,7 +396,13 @@ Inherits fsdServer.absuser
 
 	#tag Method, Flags = &h0
 		Sub execweather(s() as string, count as integer)
-		  //ToDo add functionality
+		  if count < 3 then
+		    showerror(ERR.SYNTAX,"")
+		    return
+		  end
+		  if not checksource(s(0)) then return
+		  Dim source as string = sprintf("%%%s",thisclient.callsign)
+		  MetarManager.requestmetar(source,s(2),1,-1))
 		End Sub
 	#tag EndMethod
 
