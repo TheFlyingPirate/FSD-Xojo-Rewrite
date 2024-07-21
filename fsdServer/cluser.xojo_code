@@ -374,7 +374,7 @@ Inherits fsdServer.absuser
 		  for i as integer = 2 to UBound(s)
 		    subarray.add(s(i))
 		  next
-		  CatCommand(subarray, count - 2, data)
+		  data = CatCommand(subarray, count - 2, data)
 		  
 		  If Not CheckSource(from) Then Return
 		  
@@ -384,7 +384,13 @@ Inherits fsdServer.absuser
 
 	#tag Method, Flags = &h0
 		Sub execpilotpos(s() as string, count as integer)
-		  //ToDo add functionality
+		  if count < 10 then
+		    showerror(err.SYNTAX,"")
+		    Return
+		  end
+		  if not checksource(s(1)) then Return
+		  thisclient.updatepilot(s)
+		  serverinterface.sendpilotdata(thisclient,self)
 		End Sub
 	#tag EndMethod
 

@@ -90,8 +90,8 @@ Inherits fsdServer.tcpinterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub sendmulticast(source as client, dest as string, s as string, cmd as integer, multiok as integer, ex as absuser)
-		  
+		Sub sendmulticast(source as client, dest as string, s as string, cmd as CL, multiok as integer, ex as absuser)
+		  '
 		End Sub
 	#tag EndMethod
 
@@ -356,7 +356,7 @@ Inherits fsdServer.tcpinterface
 			Group="Behavior"
 			InitialValue=""
 			Type="String"
-			EditorType=""
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="varbounce"
