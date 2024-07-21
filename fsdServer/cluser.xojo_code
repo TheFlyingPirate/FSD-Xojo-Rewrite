@@ -402,7 +402,7 @@ Inherits fsdServer.absuser
 		  end
 		  if not checksource(s(0)) then return
 		  Dim source as string = sprintf("%%%s",thisclient.callsign)
-		  MetarManager.requestmetar(source,s(2),1,-1))
+		  MetarManager.requestmetar(source,s(2),1,-1)
 		End Sub
 	#tag EndMethod
 
@@ -437,14 +437,30 @@ Inherits fsdServer.absuser
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub parse(s() as string)
-		  //ToDo Add functionality
+		Sub parse(s as string)
+		  SetActive()
+		  doparse(s)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub readmotd()
-		  //ToDo add functionality
+		  Dim io As TextInputStream
+		  Dim line As String
+		  Dim file As new FolderItem(PATH_FSD_MOTD)
+		  
+		  
+		  line = PRODUCT
+		  ClientInterface.SendGeneric(ThisClient.Callsign, ThisClient, Nil, Nil, "server", line, CL.MESSAGE)
+		  
+		  If file.Exists Then
+		    io = TextInputStream.Open(file)
+		    While Not io.EOF
+		      line = io.ReadLine
+		      ClientInterface.SendGeneric(ThisClient.Callsign, ThisClient, Nil, Nil, "server", line, CL.MESSAGE)
+		    Wend
+		    io.Close
+		  End If
 		End Sub
 	#tag EndMethod
 
@@ -457,6 +473,7 @@ Inherits fsdServer.absuser
 	#tag Method, Flags = &h0
 		Function showerror(num as ERR, env as string) As integer
 		  //ToDo add functionality
+		  return showerror(CType(num,int32),env)
 		End Function
 	#tag EndMethod
 
@@ -469,7 +486,13 @@ Inherits fsdServer.absuser
 
 	#tag Method, Flags = &h0
 		Function showerror(num as integer, env as string) As integer
-		  //ToDo add functionality
+		  Dim cs as string = unknown
+		  if thisclient <> nil then
+		    cs = thisclient.callsign
+		  end
+		  UPrintf("$ERserver:%s:%03d:%s:%s\r\n",ce,num,env,errstr(num))
+		  
+		  return num
 		End Function
 	#tag EndMethod
 

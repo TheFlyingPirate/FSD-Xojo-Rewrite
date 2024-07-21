@@ -156,6 +156,12 @@ Protected Module fsdServer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function errstr(num as integer) As string
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub FindHostname(ip As UInt32, hostname As String)
 		  // Implementation here
 		  
@@ -609,10 +615,6 @@ Protected Module fsdServer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		errstr As String
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
 		logp As Integer
 	#tag EndProperty
 
@@ -1009,14 +1011,6 @@ Protected Module fsdServer
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="errstr"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="String"
-			EditorType="MultiLineEditor"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="nerrors"
 			Visible=false
 			Group="Behavior"
@@ -1029,6 +1023,22 @@ Protected Module fsdServer
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="maxLevel"
+			Visible=false
+			Group="Behavior"
+			InitialValue="12"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="maxcl"
+			Visible=false
+			Group="Behavior"
+			InitialValue="27"
 			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
