@@ -70,7 +70,61 @@ Inherits fsdServer.absuser
 
 	#tag Method, Flags = &h0
 		Sub doparse(s as string)
-		  //ToDo add functionality
+		  Dim cmd As String = s.Left(3)
+		  Dim data() As String
+		  Dim index As CL = GetComm(cmd)
+		  Dim count As Integer
+		  
+		  If index = CL.UNOWN Then
+		    Dim i as integer = ShowError(ERR.SYNTAX, "")
+		    Return
+		  End If
+		  
+		  If thisClient = Nil And index <> CL_ADDATC And index <> CL_ADDPILOT Then
+		    Return
+		  End If
+		  
+		  ' Just a hack to put the pointer on the first arg here
+		  s = s.Mid(Len(clcmdnames(index)) + 1)
+		  count = BreakPacket(s, array)
+		  
+		  Select Case index
+		  Case CL_ADDATC
+		    ExecAA(array, count)
+		  Case CL_ADDPILOT
+		    ExecAP(array, count)
+		  Case CL_PLAN
+		    ExecFP(array, count)
+		  Case CL_RMATC, CL_RMPILOT
+		    ExecD(array, count)
+		  Case CL_PILOTPOS
+		    ExecPilotPos(array, count)
+		  Case CL_ATCPOS
+		    ExecATCPos(array, count)
+		  Case CL_PONG, CL_PING
+		    ExecMulticast(array, count, index, 0, 1)
+		  Case CL_MESSAGE
+		    ExecMulticast(array, count, index, 1, 1)
+		  Case CL_REQHANDOFF, CL_ACHANDOFF
+		    ExecMulticast(array, count, index, 1, 0)
+		  Case CL_SB, CL_PC
+		    ExecMulticast(array, count, index, 0, 0)
+		  Case CL_WEATHER
+		    ExecWeather(array, count)
+		  Case CL_REQCOM
+		    ExecMulticast(array, count, index, 0, 0)
+		  Case CL_REPCOM
+		    ExecMulticast(array, count, index, 1, 0)
+		  Case CL_REQACARS
+		    ExecACARS(array, count)
+		  Case CL_CR
+		    ExecMulticast(array, count, index, 2, 0)
+		  Case CL_CQ
+		    ExecCQ(array, count)
+		  Case CL_KILL
+		    ExecKill(array, count)
+		  Case Else
+		    ShowError(ER
 		End Sub
 	#tag EndMethod
 
@@ -141,7 +195,7 @@ Inherits fsdServer.absuser
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getcomm(s as string) As integer
+		Function getcomm(s as string) As CL
 		  //ToDo add functionality
 		End Function
 	#tag EndMethod

@@ -868,7 +868,8 @@ Protected Module fsdServer
 		  CQ
 		  CR
 		  KILL
-		WDELTA
+		  WDELTA
+		UNOWN=-1
 	#tag EndEnum
 
 	#tag Enum, Name = CMD, Type = Integer, Flags = &h0
