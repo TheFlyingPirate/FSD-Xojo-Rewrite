@@ -2,13 +2,51 @@
 Protected Class configentry
 	#tag Method, Flags = &h0
 		Sub Constructor(v as string, d as string)
-		  
+		  vari = v
+		  data = d
+		  changed =1
+		  Dim s() as string
+		  parts = s
+		  partbuf = ""
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub fillparts()
-		  //ToDo Add Functionality
+		  nparts = 0
+		  Dim s() as string
+		  parts = s
+		  partbuf = data
+		  
+		  Dim p As String = partbuf
+		  While p <> ""
+		    Dim endPos As Integer = InStr(p, ",")
+		    If endPos > 0 Then
+		      Dim seek As Integer = endPos - 1
+		      p = p.Left(endPos - 1) + p.Mid(endPos + 1)
+		      While seek > 0 And IsSpace(p.Mid(seek, 1))
+		        seek = seek - 1
+		      Wend
+		      p = p.Left(seek + 1)
+		    End If
+		    
+		    While p <> "" And IsSpace(p.Left(1))
+		      p = p.Mid(2)
+		    Wend
+		    
+		    If parts = Nil Then
+		      Dim s2() as string
+		      parts = s2
+		    End If
+		    parts.Append(p)
+		    nparts = nparts + 1
+		    
+		    If endPos > 0 Then
+		      p = p.Mid(endPos + 1)
+		    Else
+		      p = ""
+		    End If
+		  Wend
 		End Sub
 	#tag EndMethod
 

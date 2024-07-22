@@ -280,6 +280,13 @@ Protected Module fsdServer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function IsSpace(c as String) As Boolean
+		  Return c = " " Or c = Chr(9) Or c = Chr(10) Or c = Chr(13)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function MConnect(sock As Integer, addr As MemoryBlock, addrlen As Integer, timeout As Integer) As Integer
 		  // Implementation here
 		  System.DebugLog("mconnect Not yet implemented")

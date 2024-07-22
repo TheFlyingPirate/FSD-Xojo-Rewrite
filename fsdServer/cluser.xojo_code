@@ -472,25 +472,25 @@ Inherits fsdServer.absuser
 
 	#tag Method, Flags = &h0
 		Function showerror(num as ERR, env as string) As integer
-		  //ToDo add functionality
+		  
 		  return showerror(CType(num,int32),env)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub showerror(num as integer, env as string)
-		  //ToDo add functionality
-		  showerror(num,env)
+		  
+		  Dim i as integer = showerror(num,env)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function showerror(num as integer, env as string) As integer
-		  Dim cs as string = unknown
+		  Dim cs as string = "unknown"
 		  if thisclient <> nil then
 		    cs = thisclient.callsign
 		  end
-		  UPrintf("$ERserver:%s:%03d:%s:%s\r\n",ce,num,env,errstr(num))
+		  UPrintf("$ERserver:%s:%03d:%s:%s\r\n",cs,num,env,errstr(num))
 		  
 		  return num
 		End Function
