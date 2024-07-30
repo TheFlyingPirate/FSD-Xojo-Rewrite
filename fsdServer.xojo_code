@@ -681,6 +681,9 @@ Protected Module fsdServer
 	#tag Constant, Name = ATT_DATE, Type = Double, Dynamic = False, Default = \"6", Scope = Public
 	#tag EndConstant
 
+	#tag Constant, Name = ATT_INT, Type = Double, Dynamic = False, Default = \"1", Scope = Public
+	#tag EndConstant
+
 	#tag Constant, Name = ATT_VARCHAR, Type = Double, Dynamic = False, Default = \"5", Scope = Public
 	#tag EndConstant
 
