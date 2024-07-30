@@ -670,6 +670,12 @@ Protected Module fsdServer
 	#tag EndProperty
 
 
+	#tag Constant, Name = ATT_DATE, Type = Double, Dynamic = False, Default = \"6", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = ATT_VARCHAR, Type = Double, Dynamic = False, Default = \"5", Scope = Public
+	#tag EndConstant
+
 	#tag Constant, Name = CALLSIGNBYTES, Type = Double, Dynamic = False, Default = \"12", Scope = Public
 	#tag EndConstant
 
@@ -686,6 +692,9 @@ Protected Module fsdServer
 	#tag EndConstant
 
 	#tag Constant, Name = CLIENT_PILOT, Type = Double, Dynamic = False, Default = \"1", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = CONFIGINTERVAL, Type = Double, Dynamic = False, Default = \"10", Scope = Public
 	#tag EndConstant
 
 	#tag Constant, Name = CONNECTDELAY, Type = Double, Dynamic = False, Default = \"20", Scope = Public
