@@ -7,7 +7,7 @@ Protected Class server
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor(i as string, n as string, h as string, v as string, fl as integer, l as string)
+		Sub Constructor(i as string, n as string, e as string, h as string, v as string, fl as integer, l as string)
 		  
 		End Sub
 	#tag EndMethod

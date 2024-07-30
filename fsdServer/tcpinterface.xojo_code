@@ -8,9 +8,9 @@ Inherits fsdServer.process
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub adduser(name as string, port as integer, terminal as absuser)
+		Function adduser(name as string, port as integer, terminal as absuser) As Integer
 		  
-		End Sub
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0

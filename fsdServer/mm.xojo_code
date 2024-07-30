@@ -177,7 +177,7 @@ Inherits fsdServer.process
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		source As Integer
+		source As fsdServer.SOURCE
 	#tag EndProperty
 
 	#tag Property, Flags = &h0

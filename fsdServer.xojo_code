@@ -666,7 +666,15 @@ Protected Module fsdServer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		Untitled1 As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		users() As absuser
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Version As String = "V3.000 d9 Xojo"
 	#tag EndProperty
 
 
@@ -680,6 +688,15 @@ Protected Module fsdServer
 	#tag EndConstant
 
 	#tag Constant, Name = CERTFILECHECK, Type = Double, Dynamic = False, Default = \"120", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = CERT_ADD, Type = Double, Dynamic = False, Default = \"0", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = CERT_DELETE, Type = Double, Dynamic = False, Default = \"1", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = CERT_MODIFY, Type = Double, Dynamic = False, Default = \"2", Scope = Public
 	#tag EndConstant
 
 	#tag Constant, Name = CLIENTTIMEOUT, Type = Double, Dynamic = False, Default = \"800", Scope = Public
@@ -826,10 +843,19 @@ Protected Module fsdServer
 	#tag Constant, Name = SERVERTIMEOUT, Type = Double, Dynamic = False, Default = \"800", Scope = Public
 	#tag EndConstant
 
+	#tag Constant, Name = SERVER_METAR, Type = Double, Dynamic = False, Default = \"1", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = SERVER_SILENT, Type = Double, Dynamic = False, Default = \"2", Scope = Public
+	#tag EndConstant
+
 	#tag Constant, Name = SILENTCLIENTTIMEOUT, Type = Double, Dynamic = False, Default = \"36000", Scope = Public
 	#tag EndConstant
 
 	#tag Constant, Name = SYNCTIMEOUT, Type = Double, Dynamic = False, Default = \"120", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = Untitled, Type = , Dynamic = False, Default = \"", Scope = Public
 	#tag EndConstant
 
 	#tag Constant, Name = USERFEEDCHECK, Type = Double, Dynamic = False, Default = \"3", Scope = Public
@@ -842,9 +868,6 @@ Protected Module fsdServer
 	#tag EndConstant
 
 	#tag Constant, Name = VAR_AMOUNT, Type = Double, Dynamic = False, Default = \"10", Scope = Public
-	#tag EndConstant
-
-	#tag Constant, Name = VERSION, Type = String, Dynamic = False, Default = \"V3.000 d9 Xojo", Scope = Public
 	#tag EndConstant
 
 	#tag Constant, Name = WHAZZUPCHECK, Type = Double, Dynamic = False, Default = \"30", Scope = Public
