@@ -2,26 +2,44 @@
 Protected Class configgroup
 	#tag Method, Flags = &h0
 		Sub Constructor(n as string)
+		  name = n.Uppercase
+		  nentries = 0 
+		  changed = 1
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function createentry(vari as string, data as String) As configentry
+		  entries.add(new configentry(vari, data))
 		  
+		  return entries(entries.LastIndex)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function getentry(name as string) As configentry
-		  
+		  for each ce as configentry in entries
+		    if ce.vari = name then
+		      return ce
+		    end
+		  next
+		  return nil
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub handleentry(vari as string, data as string)
-		  //ToDo Add Functionality
-		  
+		  Dim e as configentry = getentry(vari)
+		  if e = nil then
+		    Dim ce as configentry = createentry(vari,data)
+		    changed = 1
+		    return
+		  end
+		  if data = e.data then return
+		  e.setdata(data)
+		  changed = 1
+		  return
 		End Sub
 	#tag EndMethod
 

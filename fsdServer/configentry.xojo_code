@@ -51,19 +51,22 @@ Protected Class configentry
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getdata() As string()
+		Function getdata() As string
+		  return data
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function getint() As integer
-		  
+		  return data.ToInteger
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function getnparts() As integer
+		  if parts.LastIndex = -1 then fillparts
+		  return nparts
 		  
 		End Function
 	#tag EndMethod
@@ -82,7 +85,11 @@ Protected Class configentry
 
 	#tag Method, Flags = &h0
 		Function inlist(entry as string) As integer
-		  //ToDo Add Functionality
+		  if parts.LastIndex = 1 then fillparts()
+		  for x as integer = 0 to nparts
+		    if parts(x).Uppercase = entry.Uppercase then return 1
+		  next
+		  return 0
 		End Function
 	#tag EndMethod
 

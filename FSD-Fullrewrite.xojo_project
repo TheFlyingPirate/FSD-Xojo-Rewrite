@@ -1,7 +1,7 @@
 Type=Console
 RBProjectVersion=2024.021
 MinIDEVersion=20070100
-OrigIDEVersion=20240101
+OrigIDEVersion=20240201
 Class=App;App.xojo_code;&h00000000374D5FFF;&h0000000000000000;false
 BuildSteps=Build Automation;Build Automation.xojo_code;&h000000001BB2CFFF;&h0000000000000000;false
 Module=fsdServer;fsdServer.xojo_code;&h0000000040B867FF;&h0000000000000000;false
