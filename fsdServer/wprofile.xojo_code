@@ -113,10 +113,17 @@ Protected Class wprofile
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Print(data As String)
+		Function Print() As string
 		  // Implementation here
 		  
-		End Sub
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function Print(data As String) As string
+		  // Implementation here
+		  
+		End Function
 	#tag EndMethod
 
 

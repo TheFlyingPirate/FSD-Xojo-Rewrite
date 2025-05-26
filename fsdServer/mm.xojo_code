@@ -2,11 +2,11 @@
 Protected Class mm
 Inherits fsdServer.process
 	#tag Method, Flags = &h0
-		Sub addq(dest as String, metar as string, parsed as integer, fd as integer)
+		Sub addq(dest as String, metar as string, parsed as boolean, fd as integer)
 		  // Try to short-circuit with a cached profile
 		  Dim prof As WProfile = GetWProfile(metar)
 		  If prof <> Nil And prof.Active =1 Then
-		    If parsed =1 Then
+		    If parsed =true Then
 		      ServerInterface.SendWeather(dest, fd, prof)
 		    Else
 		      ServerInterface.SendMetar(dest, fd, metar, prof.RawCode)
@@ -367,7 +367,7 @@ Inherits fsdServer.process
 		  bs.Close
 		  
 		  // 7) Dispatch the result
-		  If q.Parsed = 1 Then
+		  If q.Parsed = true Then
 		    // Split into tokens
 		    Dim raw() As String = report.ReplaceAll(Chr(9)," ").Split(" ")
 		    Dim args() As String
@@ -501,7 +501,7 @@ Inherits fsdServer.process
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub requestmetar(client as string, metar as string, parsed as integer, fd as integer)
+		Sub requestmetar(client as string, metar as string, parsed as boolean, fd as integer)
 		  // If we’re configured to fetch via the network, find the best peer
 		  If source = fsdServer.SOURCE.SOURCE_NETWORK Then
 		    Dim temp    As Server = myserver
@@ -526,7 +526,7 @@ Inherits fsdServer.process
 		    
 		    
 		    // Forward the request
-		    ServerInterface.SendReqMetar(client, metar, fd, parsed.ToString, best)
+		    ServerInterface.SendReqMetar(client, metar, fd, parsed, best)
 		    
 		  Else
 		    // Local mode: enqueue for later processing

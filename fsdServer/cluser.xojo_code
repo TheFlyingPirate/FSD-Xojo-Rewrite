@@ -102,23 +102,23 @@ Inherits fsdServer.absuser
 		  Case CL.ATCPOS
 		    ExecATCPos(data, count)
 		  Case CL.PONG, CL.PING
-		    ExecMulticast(data, count, index, 0, 1)
+		    ExecMulticast(data, count, index, 0, true)
 		  Case CL.MESSAGE
-		    ExecMulticast(data, count, index, 1, 1)
+		    ExecMulticast(data, count, index, 1, true)
 		  Case CL.REQHANDOFF, CL.ACHANDOFF
-		    ExecMulticast(data, count, index, 1, 0)
+		    ExecMulticast(data, count, index, 1, false)
 		  Case CL.SB, CL.PC
-		    ExecMulticast(data, count, index, 0, 0)
+		    ExecMulticast(data, count, index, 0, false)
 		  Case CL.WEATHER
 		    ExecWeather(data, count)
 		  Case CL.REQCOM
-		    ExecMulticast(data, count, index, 0, 0)
+		    ExecMulticast(data, count, index, 0, false)
 		  Case CL.REPCOM
-		    ExecMulticast(data, count, index, 1, 0)
+		    ExecMulticast(data, count, index, 1, false)
 		  Case CL.REQACARS
 		    ExecACARS(data, count)
 		  Case CL.CR
-		    ExecMulticast(data, count, index, 2, 0)
+		    ExecMulticast(data, count, index, 2, false)
 		  Case CL.CQ
 		    ExecCQ(data, count)
 		  Case CL.KILL
@@ -177,7 +177,7 @@ Inherits fsdServer.absuser
 		  End If
 		  
 		  thisClient = New Client(s(3), myServer, s(0), CLIENT_ATC, level, s(6), s(2), -1)
-		  ServerInterface.SendAddClient("*", thisClient, Nil, Me, 0)
+		  ServerInterface.SendAddClient("*", thisClient, Nil, Me, false)
 		  ReadMOTD()
 		End Sub
 	#tag EndMethod
@@ -193,7 +193,7 @@ Inherits fsdServer.absuser
 		  
 		  If StrComp(s(2), "METAR", CType(ComparisonOptions.CaseInsensitive,Int32)) = 0 And count > 3 Then
 		    Dim source As String = "%" + thisClient.Callsign
-		    MetarManager.RequestMetar(source, s(3), 0, -1)
+		    MetarManager.RequestMetar(source, s(3), false, -1)
 		    
 		  End If
 		End Sub
@@ -244,7 +244,7 @@ Inherits fsdServer.absuser
 		  End If
 		  
 		  thisClient = New Client(s(2), myServer, s(0), CLIENT_PILOT, level, s(4), s(7), Val(s(6)))
-		  ServerInterface.SendAddClient("*", thisClient, Nil, Me, 0)
+		  ServerInterface.SendAddClient("*", thisClient, Nil, Me, false)
 		  ReadMOTD()
 		End Sub
 	#tag EndMethod
@@ -274,7 +274,7 @@ Inherits fsdServer.absuser
 		  End If
 		  
 		  If StrComp(s(1), "server", Ctype(ComparisonOptions.CaseInsensitive,Int32)) <> 0 Then
-		    ExecMulticast(s, count, CL.CQ, 1, 1)
+		    ExecMulticast(s, count, CL.CQ, 1, true)
 		    Return
 		  End If
 		  
@@ -360,7 +360,7 @@ Inherits fsdServer.absuser
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub execmulticast(s() as string, count as integer, cmd as CL, nargs as integer, multiok as integer)
+		Sub execmulticast(s() as string, count as integer, cmd as CL, nargs as integer, multiok as boolean)
 		  nargs = nargs + 2
 		  If count < nargs Then
 		    ShowError(ERR.SYNTAX, "")
@@ -402,7 +402,7 @@ Inherits fsdServer.absuser
 		  end
 		  if not checksource(s(0)) then return
 		  Dim source as string = sprintf("%%%s",thisclient.callsign)
-		  MetarManager.requestmetar(source,s(2),1,-1)
+		  MetarManager.requestmetar(source,s(2),true,-1)
 		End Sub
 	#tag EndMethod
 

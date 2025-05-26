@@ -165,7 +165,7 @@ Inherits fsdServer.absuser
 
 
 	#tag Property, Flags = &h0
-		clientok As Integer
+		clientok As Boolean
 	#tag EndProperty
 
 	#tag Property, Flags = &h0

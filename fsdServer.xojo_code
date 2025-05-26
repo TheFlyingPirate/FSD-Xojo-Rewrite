@@ -210,6 +210,13 @@ Protected Module fsdServer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function GetClientByCallsign(cs as string) As Client
+		  //ToDo implement
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function getwprofile(name as String) As wprofile
 		  System.DebugLog("getwprofile Not yet implemented")
 		  
@@ -255,27 +262,27 @@ Protected Module fsdServer
 		  cmdnames.add("KILL")
 		  cmdnames.add("RESET")
 		  
-		  silentok.Add(1) // Notify
-		  silentok.Add(1) // ReqMetar
-		  silentok.Add(1) // Ping
-		  silentok.Add(1) // Pong
-		  silentok.Add(1) // Sync
-		  silentok.Add(1) // LinkDown
-		  silentok.Add(1) // NoWx
-		  silentok.Add(1) // AddClient
-		  silentok.Add(1) // RmClient
-		  silentok.Add(1) // Plan
-		  silentok.Add(0) // PD
-		  silentok.Add(0) // AD
-		  silentok.Add(1) // AddCert
-		  silentok.Add(0) // MC
-		  silentok.Add(1) // WX
-		  silentok.Add(1) // Metar
-		  silentok.Add(1) // Add W Profile
-		  silentok.Add(1) // Del W Profile
-		  silentok.Add(1) // Kill Client
-		  silentok.Add(1) // Reset
-		  silentok.Add(0) // End
+		  silentok.Add(true) // Notify
+		  silentok.Add(true) // ReqMetar
+		  silentok.Add(true) // Ping
+		  silentok.Add(true) // Pong
+		  silentok.Add(true) // Sync
+		  silentok.Add(true) // LinkDown
+		  silentok.Add(true) // NoWx
+		  silentok.Add(true) // AddClient
+		  silentok.Add(true) // RmClient
+		  silentok.Add(true) // Plan
+		  silentok.Add(false) // PD
+		  silentok.Add(false) // AD
+		  silentok.Add(true) // AddCert
+		  silentok.Add(false) // MC
+		  silentok.Add(true) // WX
+		  silentok.Add(true) // Metar
+		  silentok.Add(true) // Add W Profile
+		  silentok.Add(true) // Del W Profile
+		  silentok.Add(true) // Kill Client
+		  silentok.Add(true) // Reset
+		  silentok.Add(false) // End
 		End Sub
 	#tag EndMethod
 
@@ -603,6 +610,56 @@ Protected Module fsdServer
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function svcmdnames(c as fsdServer.CMD) As String
+		  Select Case c
+		  Case cmd.NOTIFY
+		    Return "NOTIFY"
+		  Case cmd.REQMETAR
+		    Return "REQMETAR"
+		  case cmd.PING
+		    Return "PING"
+		  case cmd.PONG
+		    Return "PONG"
+		  case cmd.SYNC
+		    Return "SYNC"
+		  case cmd.LINKDOWN
+		    Return "LINKDOWN"
+		  Case cmd.NOWX
+		    Return "NOWX"
+		  Case cmd.ADDCLIENT
+		    Return "ADDCLIENT"
+		  Case cmd.RMCLIENT
+		    Return "RMCLIENT"
+		  Case CMD.PLAN
+		    Return "PLAN"
+		  Case CMD.PD //Pilot Data
+		    Return "PD"
+		  Case cmd.AD //ATC Data
+		    Return "AD"
+		  Case cmd.CERT
+		    Return "ADDCERT"
+		  Case cmd.MULTIC
+		    Return "MC"
+		  Case cmd.WEATHER
+		    Return "WX"
+		  Case cmd.METAR
+		    Return "METAR"
+		  Case cmd.ADDWPROF
+		    Return "AWPROF"
+		  Case cmd.DELWPROF
+		    Return "DWPROF"
+		  Case cmd.KILL
+		    Return "KILL"
+		  Case cmd.RESET
+		    Return "RESET"
+		  else
+		    return ""
+		  End Select
+		  
+		End Function
+	#tag EndMethod
+
 
 	#tag Note, Name = Untitled2
 		
@@ -683,7 +740,11 @@ Protected Module fsdServer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		silentok() As Integer
+		ServUsers() As ServUser
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		silentok() As Boolean
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -922,7 +983,7 @@ Protected Module fsdServer
 		Destination as string *20
 		  metarid as string * 10
 		  fd as integer
-		parsed as integer
+		parsed as boolean
 	#tag EndStructure
 
 	#tag Structure, Name = station, Flags = &h0

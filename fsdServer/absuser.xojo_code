@@ -168,10 +168,10 @@ Protected Class absuser
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Send(data As String) As Integer
+		Sub Send(data As String)
 		  System.DebugLog("absuser.send Not yet implemented")
-		  return -1
-		End Function
+		  
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
