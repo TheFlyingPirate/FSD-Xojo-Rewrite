@@ -73,8 +73,8 @@ Inherits fsdServer.tcpinterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function run() As Integer
-		  Dim busy as integer = super.run()
+		Function run() As Boolean
+		  Dim busy as Boolean = super.run()
 		  if MTime()-prevwinddelta>WINDDELTATIMEOUT then
 		    prevwinddelta=MTime()
 		    sendwinddelta()

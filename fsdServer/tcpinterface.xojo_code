@@ -68,7 +68,7 @@ Inherits fsdServer.process
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function run() As integer
+		Function run() As Boolean
 		  
 		End Function
 	#tag EndMethod

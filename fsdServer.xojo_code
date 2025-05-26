@@ -671,6 +671,10 @@ Protected Module fsdServer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		processes() As process
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		serverinterface As servinterface
 	#tag EndProperty
 

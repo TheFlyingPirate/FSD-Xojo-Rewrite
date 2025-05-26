@@ -69,16 +69,16 @@ Inherits fsdServer.process
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function run() As integer
-		  if mtime-prevcheck<CONFIGINTERVAL then return 0
+		Function run() As Boolean
+		  if mtime-prevcheck<CONFIGINTERVAL then return false
 		  prevcheck = mtime()
 		  Dim file as new FolderItem(filename)
-		  if not file.Exists then return 0
+		  if not file.Exists then return false
 		  Dim lastModified as Double = file.ModificationDateTime.SecondsFrom1970
-		  if lastModified = lastmodify then return 0
+		  if lastModified = lastmodify then return false
 		  lastmodify = lastmodified
 		  ParseFile()
-		  Return 0
+		  Return false
 		End Function
 	#tag EndMethod
 

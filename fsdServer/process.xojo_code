@@ -7,8 +7,8 @@ Protected Class process
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function run() As Integer
-		  
+		Function run() As Boolean
+		  return false
 		End Function
 	#tag EndMethod
 

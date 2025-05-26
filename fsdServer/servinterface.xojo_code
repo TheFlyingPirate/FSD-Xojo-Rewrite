@@ -34,10 +34,11 @@ Inherits fsdServer.tcpinterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function run() As integer
+		Function run() As Boolean
 		  // Calling the overridden superclass method.
-		  Var returnValue as integer = Super.run()
+		  Var busy as boolean = Super.run()
 		  
+		  return busy
 		End Function
 	#tag EndMethod
 

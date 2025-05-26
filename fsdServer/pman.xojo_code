@@ -2,25 +2,30 @@
 Protected Class pman
 	#tag Method, Flags = &h0
 		Sub Constructor()
-		  
+		  busy = false
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub registerprocess(what as process)
-		  
+		  processes.add(what)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub run()
-		  
+		  busy = false
+		  for each p as Process in processes
+		    if p.run then
+		      busy = true
+		    end
+		  next
 		End Sub
 	#tag EndMethod
 
 
 	#tag Property, Flags = &h0
-		busy As Integer
+		busy As Boolean
 	#tag EndProperty
 
 

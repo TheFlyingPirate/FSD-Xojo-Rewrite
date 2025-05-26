@@ -42,9 +42,9 @@ Inherits fsdServer.tcpinterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Run() As Integer
+		Function Run() As Boolean
 		  // Implementation here
-		  Return 0
+		  Return false
 		End Function
 	#tag EndMethod
 
