@@ -331,6 +331,21 @@ Protected Module fsdServer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function PadLeft(input As String, totalLength As Integer, padChar As String = " ") As String
+		  If input.Length >= totalLength Then
+		    Return input
+		  Else
+		    Dim o as string =""
+		    for i as integer = 0 to totalLength - input.Length
+		      o=o+padChar
+		    next
+		    o=o+input
+		    Return o
+		  End If
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function PrintLoc(lat As Double, lon As Double, loc As String) As String
 		  // Implementation here
 		  System.DebugLog("printloc Not yet implemented")
@@ -587,6 +602,12 @@ Protected Module fsdServer
 		  Return s.Uppercase
 		End Function
 	#tag EndMethod
+
+
+	#tag Note, Name = Untitled2
+		
+		
+	#tag EndNote
 
 
 	#tag Property, Flags = &h0
@@ -1083,6 +1104,22 @@ Protected Module fsdServer
 			InitialValue="27"
 			Type="Integer"
 			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Untitled1"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Version"
+			Visible=false
+			Group="Behavior"
+			InitialValue="V3.000 d9 Xojo"
+			Type="String"
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Module
