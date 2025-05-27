@@ -60,6 +60,7 @@ Inherits fsdServer.tcpinterface
 		        Dim buf as string = sprintf("SERVER:%s:%s",who.callsign,reason)
 		        sendpacket(who,NIL,NIL,CLIENT_ALL,-1,CL.KILL,buf)
 		        u.Kill(KILL.KILL)
+		        clients.RemoveAt(clients.IndexOf(who))
 		      end
 		    end
 		  next

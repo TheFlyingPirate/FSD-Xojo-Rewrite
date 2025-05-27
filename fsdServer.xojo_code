@@ -217,9 +217,22 @@ Protected Module fsdServer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function getServer(s as String) As Server
+		  for each sv as server in servers
+		    if sv.ident = s then
+		      return sv
+		    end
+		  next
+		  return nil
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function getwprofile(name as String) As wprofile
-		  System.DebugLog("getwprofile Not yet implemented")
-		  
+		  for each wp as wprofile in wProf
+		    if wp.Name = name then return wp
+		  next
+		  return nil
 		End Function
 	#tag EndMethod
 
@@ -761,6 +774,10 @@ Protected Module fsdServer
 
 	#tag Property, Flags = &h0
 		Version As String = "V3.000 d9 Xojo"
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		wProf() As wprofile
 	#tag EndProperty
 
 

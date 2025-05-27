@@ -480,7 +480,26 @@ Inherits fsdServer.tcpinterface
 
 	#tag Method, Flags = &h0
 		Sub sendweather(dest as string, fd as integer, w as wprofile)
+		  // Local system?
+		  If dest.Lowercase = ServerIdent.Lowercase Then
+		    SystemInterface.ReceiveWeather(fd, w)
+		    Return
+		  End If
 		  
+		  // Local client?
+		  If dest.Left(1) = "%" Then
+		    Dim c As Client = GetClient(dest.Mid(2))
+		    If c <> Nil And c.Location = MyServer Then
+		      ClientInterface.SendWeather(c, w)
+		      Return
+		    End If
+		  End If
+		  
+		  Dim weatherStr As String = w.Print()
+		  Dim data       As String = w.Name + ":" + fd.ToText + ":" + weatherStr
+		  
+		  SendPacket(Nil, Nil, CMD.WEATHER, dest, ServerIdent, PacketCount, 0, False, data)
+		  IncPacketCount()
 		End Sub
 	#tag EndMethod
 
