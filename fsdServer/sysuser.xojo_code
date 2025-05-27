@@ -210,6 +210,12 @@ Inherits fsdServer.absuser
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub PrintWeather(w as wprofile)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub RunCmd(code As Integer, args() As String, count As Integer)
 		  // Implementation here
 		  
